@@ -1,4 +1,4 @@
-function prolongation_matrix = prolongation_matrix(nodes_km1,mid_nodes_km1,p,p2,t_km1,t2_km1,basis_km1,k)
+function prolongation_matrix = prolongation_matrix(nodes_km1,mid_nodes_km1,p,p2,t_km1,t2_km1,basis_km1,n)
 % PROLONGATION_MATRIX - Create prolongation matrix
 %
 % Syntax:
@@ -31,11 +31,11 @@ index = 1;
 for T = 1:triangles_km1
     for j = 1:6
         J = basis_km1(:,j,T);
-        if k == 0
+        if n == 0
             basis_fn_j =@(r,z) J(1).*r.^2 + J(2).*r.*z + J(3).*z.^2 ...
                         + J(4).*r + J(5).*z + J(6);
         else
-            basis_fn_j =@(r,z) (r./k).*(J(1).*r.^2 + J(2).*r.*z  ...
+            basis_fn_j =@(r,z) (r./n).*(J(1).*r.^2 + J(2).*r.*z  ...
                         + J(3).*z.^2 + J(4).*r + J(5).*z + J(6));
         end
         

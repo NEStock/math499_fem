@@ -1,5 +1,5 @@
-function stiffness_matrix = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,k)
-% STIFFNESS_MATRIX_WEIGHTED_P2 - Create stiffness matrix with weight k
+function stiffness_matrix = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n)
+% STIFFNESS_MATRIX_WEIGHTED_P2 - Create stiffness matrix with weight n
 %
 % Syntax:
 %     A = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,k)
@@ -12,7 +12,7 @@ function stiffness_matrix = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,k)
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
 %         the pieceiwise basis function for the ith node in triangle k.
-%     k - given weight
+%     n - given weight
 %
 % Outputs:
 %     stiffness_matrix - stiffness matrix
@@ -31,10 +31,10 @@ for T = 1:triangles
     
     % get coordinates of triangle T
     coordinates = zeros(3,2);
-    for n = 1:3
-        node = t(n,T);
+    for N = 1:3
+        node = t(N,T);
         % get x,y coordinates
-        coordinates(n,:) = p(:,node);
+        coordinates(N,:) = p(:,node);
     end
         
     [R,Z,Wr,Wz] = triquad(7, coordinates);
@@ -46,7 +46,7 @@ for T = 1:triangles
             J = basis(:,j,T);
             
             % integrate grad(I) * grad(J) + I * J for (x,y)
-            if k == 0
+            if n == 0
                 grad_i_r =@(r,z) 2.*I(1).*r + I(2).*z + I(4);
                 grad_i_z =@(r,z) I(2).*r + 2.*I(3).*z + I(5);
                 grad_j_r =@(r,z) 2.*J(1).*r + J(2).*z + J(4);
@@ -67,18 +67,18 @@ for T = 1:triangles
                 %                 (-k/r)*v
                 %                 partial_deriv_z(v) ]
                 % phi_k_i = (r/k)(ar^2 + brz + cz^2 + dr + ez + f)
-                grad_i_r =@(r,z) (1./k).*(3.*I(1).*r.^2 + 2.*I(2).*r.*z ...
+                grad_i_r =@(r,z) (1./n).*(3.*I(1).*r.^2 + 2.*I(2).*r.*z ...
                     + I(3).*z.^2 + 2.*I(4).*r + I(5).*z + I(6));
                 second_row_i =@(r,z) (I(1).*r.^2 + I(2).*r.*z ...
                     + I(3).*z.^2 + I(4).*r + I(5).*z + I(6));
-                grad_i_z = @(r,z) (1./k).*(I(2).*r.^2 + 2.*I(3).*r.*z ...
+                grad_i_z = @(r,z) (1./n).*(I(2).*r.^2 + 2.*I(3).*r.*z ...
                     + I(5).*r);
                 
-                grad_j_r =@(r,z) (1./k).*(3.*J(1).*r.^2 + 2.*J(2).*r.*z ...
+                grad_j_r =@(r,z) (1./n).*(3.*J(1).*r.^2 + 2.*J(2).*r.*z ...
                     + J(3).*z.^2 + 2.*J(4).*r + J(5).*z + J(6));
                 second_row_j =@(r,z) (J(1).*r.^2 + J(2).*r.*z ...
                     + J(3).*z.^2 + J(4).*r + J(5).*z + J(6));
-                grad_j_z =@(r,z) (1./k).*(J(2).*r.^2 + 2.*J(3).*r.*z ...
+                grad_j_z =@(r,z) (1./n).*(J(2).*r.^2 + 2.*J(3).*r.*z ...
                     + I(5).*r);
                 
                 grad_integrand =@(r,z) (grad_i_r(r,z).*grad_j_r(r,z) ...
@@ -86,7 +86,7 @@ for T = 1:triangles
                     + grad_i_z(r,z).*grad_j_z(r,z)).*r;
                 Q1 = Wr'*feval(grad_integrand,R,Z)*Wz;               
                 
-                integrand =@(r,z) ((r./k).^2).*(I(1).*r.^2 + I(2).*r.*z ...
+                integrand =@(r,z) ((r./n).^2).*(I(1).*r.^2 + I(2).*r.*z ...
                     + I(3).*z.^2 + I(4).*r + I(5).*z + I(6)).*(J(1).*r.^2 ...
                     + J(2).*r.*z + J(3).*z.^2 + J(4).*r + J(5).*z ...
                     + J(6)).*r;
@@ -125,7 +125,7 @@ for T = 1:triangles
 end
 
 [~,n2] = size(p2);
-n = nodes + n2;
-stiffness_matrix = sparse(i_vec,j_vec,s_vec,n,n);
+N = nodes + n2;
+stiffness_matrix = sparse(i_vec,j_vec,s_vec,N,N);
 
 % end

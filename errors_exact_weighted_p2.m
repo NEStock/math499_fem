@@ -1,4 +1,4 @@
-function [err,grad_err,max_err] = errors_exact_weighted_p2(p,t,p2,t2,basis,u_h,k)
+function [err,grad_err,max_err] = errors_exact_weighted_p2(p,t,p2,t2,basis,u_h,n)
                                                                     
 % ERRORS_EXACT_WEIGHTED_p2 - Calculate the errors of our solution u_h
 % compared to the exact solution u.
@@ -13,10 +13,10 @@ function [err,grad_err,max_err] = errors_exact_weighted_p2(p,t,p2,t2,basis,u_h,k
 %         to which the element belongs
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle k. 
+%         the pieceiwise basis function for the ith node in triangle T. 
 %     u_h_km1 - approximate solution for mesh level k-1
 %     u_h_k - approximate solution for mesh level k
-%     k - given weight
+%     n - given weight
 %
 % Outputs:
 %    err - L2 error
@@ -37,13 +37,13 @@ for T = 1:triangles
     
     % get coordinates of triangle T
     coordinates = zeros(3,2);
-    for n = 1:3
-        node = t(n,T);
+    for i = 1:3
+        node = t(i,T);
         % get x,y coordinates
-        coordinates(n,:) = p(:,node);
+        coordinates(i,:) = p(:,node);
     end
     
-    [u,grad_u_r,grad_u_z] = get_exact_y_solutions(coordinates(1,1),coordinates(1,2),k);
+    [u,grad_u_r,grad_u_z] = get_exact_y_solutions(coordinates(1,1),coordinates(1,2),n);
 
     [R,Z,Wr,Wz] = triquad(7, coordinates);
 
@@ -61,7 +61,7 @@ for T = 1:triangles
     n5 = t2(2,T);
     n6 = t2(3,T);
     
-    if k == 0
+    if n == 0
         % find L2 Error for u_h_km1 & u_h_k
         approx =@(r,z) u_h(n1).*(b1(1).*r.^2 + b1(2).*r.*z ...
             + b1(3).*z.^2 + b1(4).*r + b1(5).*z + b1(6)) ...
@@ -77,17 +77,17 @@ for T = 1:triangles
             + b6(3).*z.^2 + b6(4).*r + b6(5).*z + b6(6));
     else
         % find L2 Error for u_h_km1 & u_h_k
-        approx =@(r,z) u_h(n1).*(r./k).*(b1(1).*r.^2 + b1(2).*r.*z ...
+        approx =@(r,z) u_h(n1).*(r./n).*(b1(1).*r.^2 + b1(2).*r.*z ...
             + b1(3).*z.^2 + b1(4).*r + b1(5).*z + b1(6)) ...
-            + u_h(n2).*(r./k).*(b2(1).*r.^2 + b2(2).*r.*z ...
+            + u_h(n2).*(r./n).*(b2(1).*r.^2 + b2(2).*r.*z ...
             + b2(3).*z.^2 + b2(4).*r + b2(5).*z + b2(6)) ...
-            + u_h(n3).*(r./k).*(b3(1).*r.^2 + b3(2).*r.*z ...
+            + u_h(n3).*(r./n).*(b3(1).*r.^2 + b3(2).*r.*z ...
             + b3(3).*z.^2 + b3(4).*r + b3(5).*z + b3(6)) ...
-            + u_h(n4 + nodes).*(r./k).*(b4(1).*r.^2 + b4(2).*r.*z ...
+            + u_h(n4 + nodes).*(r./n).*(b4(1).*r.^2 + b4(2).*r.*z ...
             + b4(3).*z.^2 + b4(4).*r + b4(5).*z + b4(6)) ...
-            + u_h(n5 + nodes).*(r./k).*(b5(1).*r.^2 + b5(2).*r.*z ...
+            + u_h(n5 + nodes).*(r./n).*(b5(1).*r.^2 + b5(2).*r.*z ...
             + b5(3).*z.^2 + b5(4).*r + b5(5).*z + b5(6)) ...
-            + u_h(n6 + nodes).*(r./k).*(b6(1).*r.^2 + b6(2).*r.*z ...
+            + u_h(n6 + nodes).*(r./n).*(b6(1).*r.^2 + b6(2).*r.*z ...
             + b6(3).*z.^2 + b6(4).*r + b6(5).*z + b6(6));
     end
     
@@ -117,22 +117,22 @@ end
 
 % find Max Error
 max_err = -Inf;
-for n = 1:nodes
-    r = p(1,n);
-    z = p(2,n);
+for i = 1:nodes
+    r = p(1,i);
+    z = p(2,i);
     
-    diff = abs(u(r,z) - u_h(n));
+    diff = abs(u(r,z) - u_h(i));
     
     if diff > max_err
         max_err = diff;
     end
 end
 
-for n = 1:mid_nodes
-    r = p2(1,n);
-    z = p2(2,n);
+for i = 1:mid_nodes
+    r = p2(1,i);
+    z = p2(2,i);
     
-    diff = abs(u(r,z) - u_h(n + nodes));
+    diff = abs(u(r,z) - u_h(i + nodes));
     
     if diff > max_err
         max_err = diff;

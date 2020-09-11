@@ -1,4 +1,4 @@
-function b = create_b_p2(p,t,p2,t2,basis,f)
+function b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
 % CREATE_B_P2 - Create vector b
 %
 % Syntax:
@@ -34,10 +34,10 @@ for T = 1:triangles
     
     % get coordinates of triangle T (Tth col of t)
     coordinates = zeros(3,2);
-    for n = 1:3
-        node = t(n,T);
+    for i = 1:3
+        node = t(i,T);
         % get x,y coordinates
-        coordinates(n,:) = p(:,node);
+        coordinates(i,:) = p(:,node);
     end
     
     [X,Y,Wx,Wy] = triquad(7, coordinates);
@@ -45,9 +45,24 @@ for T = 1:triangles
     for i = 1:6
         
         I = basis(:,i,T);
-    
-        integrand =@(x,y) feval(f,x,y).*(I(1).*x.^2 + I(2).*x.*y ...
-            + I(3).*y.^2 + I(4).*x + I(5).*y + I(6));
+        a = I(1);
+        b = I(2);
+        c = I(3);
+        d = I(4);
+        e = I(5);
+        f = I(6);
+        
+        % Calculate the gradient_rz^n* of basis function I
+        grad_I_r =@(r,z) (1./n).*(3.*a.*r.^2 + 2.*b.*r.*z + c.*z.^2 ...
+            + 2.*d.*r + e.*z + f);
+        n_r_I =@(r,z) a.*r.^2 + b.*r.*z + c.*z.^2 + d.*r + e.*z + f;
+        grad_I_z =@(r,z) (1./n).*(b.*r.^2 + 2.*c.*r.*z + e.*r);
+        
+        integrand =@(r,z) (grad_u_r(r,z).*grad_I_r(r,z) ...
+            + (n./r).*u(r,z).*n_r_I(r,z) ...
+            + grad_u_z(r,z).*grad_I_z(r,z)).*r;
+        
+        % Integrate and solve
         b_i = Wx'*feval(integrand,X,Y)*Wy;
         
         if i >= 4
@@ -62,6 +77,6 @@ for T = 1:triangles
     end
 end
 
-[~,n] = size(p);
+[~,i] = size(p);
 [~,n2] = size(p2);
-b = sparse(i_vec,j_vec,s_vec,n+n2,1);
+b = sparse(i_vec,j_vec,s_vec,i+n2,1);

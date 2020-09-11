@@ -1,10 +1,9 @@
-function [err,grad_err,max_err] = main_no_exact(u,gd,sf,ns,mesh_level,n)
-%MAIN Summary of this function goes here
-%   Detailed explanation goes here
+function [err,grad_err,max_err] = weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
+%WEIGHTED_HL_K_0 Weighted Hodge Laplacian with k = 0.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
-%       main_no_exact(u,gd,sf,ns,mesh_level, n)
+%       weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
 %
 % Inputs:
 %     u - given function
@@ -21,12 +20,12 @@ function [err,grad_err,max_err] = main_no_exact(u,gd,sf,ns,mesh_level,n)
 %         indicies
 %
 % Usage Exampled:
-%    u = @(r,z) r^(1/2);
+%    u = @(r,z) r.^(1/2);
 %    mesh = 8;
 %    n = 1;
-%    pdepoly([0,1,1,0], [-1,-1,1,1]);
-%    [err,grad_err,max_err] = 
-%       main_no_exact(u,gd,sf,ns,mesh_level, n)
+%    pdepoly([0,1,1,0], [0,0,1,1]);
+%    (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
+%    [err,grad_err,max_err] = weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n)
 % Dependencies:
 %    basis_functions_weighted_p2.m
 %    display_errors.m
@@ -61,10 +60,10 @@ if mesh_level > 1
 
     [p2,t2] = find_midpoints(p,t);
 
-    [basis,Qh] = solve(p,p2,e,t,t2,u,n);
-    % errors_no_exact_weighted_p2(p,t,p2,t2,basis,u_h_km1,u_h_k,k)
+    [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n);
 
     for i = 2:mesh_level
+        % Save mesh_level - 1 vectors
         basis_1 = basis;
         Qh_1 = Qh;
         t_1 = t;
@@ -74,6 +73,7 @@ if mesh_level > 1
         
         % Refine mesh to next level
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
+        %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         % Find the midpoints for P2 nodal points
         [p2,t2] = find_midpoints(p,t);
@@ -85,7 +85,7 @@ if mesh_level > 1
         Qh_extended = P*Qh_1;
         
         % Solve
-        [basis,Qh] = solve(p,p2,e,t,t2,u,n);
+        [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n);
         [err(i),grad_err(i),max_err(i)] = errors_no_exact_weighted_p2(p,t,p2,t2,basis,Qh_extended,Qh,n);
     end
     
@@ -97,11 +97,14 @@ end
 end
 
 % subfunction
-function [basis,Qh] = solve(p,p2,e,t,t2,u,n)
+function [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n)
     basis = basis_functions_weighted_p2(p,t,p2,t2);
     S = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n);
-    b = create_b_p2(p,t,p2,t2,basis,u);
+    disp(S);
+    b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n);
+    disp(b);
     Qh = S\b;
+    disp(Qh);
 
     figure();
     pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');

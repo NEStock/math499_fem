@@ -5,11 +5,27 @@ function prolongation_matrix = prolongation_matrix(nodes_km1,mid_nodes_km1,p,p2,
 %     prolongation_matrix = prolongation_matrix()
 %
 % Inputs:
-%     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
+%     nodes_km1 - Number of vertex nodes in mesh level - 1.
+%     mid_nodes_km1 - Number of midpoint nodes in mesh level - 1.
+%     p - a 2xNumNodes matrix representing nodal coordinates.
+%     t_km1 - a 4xNumTriangles matrix representing the element connectivity
+%         in terms of node IDs. The end row of T represents the geometry
+%         face ID to which the element belongs. For current mesh level - 1.
+%     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
+%     t2_km1 - a 4xNumTriangles matrix representing the element 
+%         connectivity in terms of node IDs. The three node IDs in a column
+%         are the three midpoints of the node IDS in corresponding column
+%         in t. For current mesh level - 1.
+%     basis_km1 - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle k.
+%         the pieceiwise basis function for the ith node in triangle k. For
+%         current mesh level - 1.
+%     n - Hodge Laplacian on Axisymmetrix Domain and its Discretization
+%     weight
+%    
 % Outputs:
-%     prolongation_matrix - prolongation matrix
+%     prolongation_matrix - Prolongation matrix. Used to extend mesh level
+%     - 1 vectors.
 %
 % Author: Nicole Stock
 % Date: Spring 2020
@@ -31,12 +47,20 @@ index = 1;
 for T = 1:triangles_km1
     for j = 1:6
         J = basis_km1(:,j,T);
+        
+        a = J(1);
+        b = J(2);
+        c = J(3);
+        d = J(4);
+        e = J(5);
+        f = J(6);
+        
         if n == 0
-            basis_fn_j =@(r,z) J(1).*r.^2 + J(2).*r.*z + J(3).*z.^2 ...
-                        + J(4).*r + J(5).*z + J(6);
+            basis_fn_j =@(r,z) a.*r.^2 + b.*r.*z + c.*z.^2 + d.*r ...
+                        + e.*z + f;
         else
-            basis_fn_j =@(r,z) (r./n).*(J(1).*r.^2 + J(2).*r.*z  ...
-                        + J(3).*z.^2 + J(4).*r + J(5).*z + J(6));
+            basis_fn_j =@(r,z) (r./n).*(a.*r.^2 + b.*r.*z + c.*z.^2 ...
+                        + d.*r + e.*z + f);
         end
         
         if j >= 4

@@ -35,9 +35,9 @@ for T = 1:triangles
         z = p(2,node);
         
         % fill in polynomial
-        poly(i,1) = r^2;
-        poly(i,2) = r*z;
-        poly(i,3) = z^2;
+        poly(i,1) = r.^2;
+        poly(i,2) = r.*z;
+        poly(i,3) = z.^2;
         poly(i,4) = r;
         poly(i,5) = z;
         poly(i,6) = 1;
@@ -48,9 +48,9 @@ for T = 1:triangles
         r = p2(1,node);
         z = p2(2,node);
         % fill in polynomial
-        poly(i+3,1) = r^2;
-        poly(i+3,2) = r*z;
-        poly(i+3,3) = z^2;
+        poly(i+3,1) = r.^2;
+        poly(i+3,2) = r.*z;
+        poly(i+3,3) = z.^2;
         poly(i+3,4) = r;
         poly(i+3,5) = z;
         poly(i+3,6) = 1;

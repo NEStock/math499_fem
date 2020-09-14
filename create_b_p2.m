@@ -15,7 +15,9 @@ function b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
 %         midpoints of the node IDS in corresponding column in t.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle k. 
+%         the pieceiwise basis function for the ith node in triangle k.
+%     n - Hodge Laplacian on Axisymmetrix Domain and its Discretization
+%     weight
 %
 % Outputs:
 %     b - vector such that stiffness_matrix * b = solution.

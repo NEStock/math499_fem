@@ -1,4 +1,4 @@
-function [err,grad_err,max_err] = errors_exact_weighted_p2(p,t,p2,t2,basis,u_h,n)
+function [err,grad_err,max_err] = errors_exact_weighted_p2(p,t,p2,t2,basis,u_h,n,u,grad_u_r,grad_u_z)
                                                                     
 % ERRORS_EXACT_WEIGHTED_p2 - Calculate the errors of our solution u_h
 % compared to the exact solution u.
@@ -44,8 +44,6 @@ for T = 1:triangles
         coordinates(i,:) = p(:,node);
     end
     
-    [u,grad_u_r,grad_u_z] = get_exact_y_solutions(coordinates(1,1),coordinates(1,2),n);
-
     [R,Z,Wr,Wz] = triquad(7, coordinates);
 
     b1 = basis(:,1,T);

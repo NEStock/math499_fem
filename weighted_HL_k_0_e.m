@@ -1,17 +1,18 @@
-function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n)
+function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
 %WEIGHTED_HL_K_0_e Weighted Hodge Laplacian with k = 0. 
 %   This program is set up to be given an exact solution.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
-%       weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
+%       weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
 %
 % Inputs:
-%     u - given function
+%     f - given function
 %     gd,sf,ns - outputs of pdepoly specifying domain
 %     mesh_level - max mesh level
 %     n - Hodge Laplacian on Axisymmetrix Domain and its Discretization
 %     weight
+%     u - exact solution
 %
 % Outputs:
 %     err - array of L2 errors for mesh levels corresponding to indices
@@ -21,12 +22,13 @@ function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns
 %         indicies
 %
 % Usage Exampled:
-%    u = @(r,z) r^(1/2);
+%    [f,grad_f_r,grad_f_z] = get_f_data1();
+%    [u,grad_u_r,grad_u_z] = get_u_data1();
 %    mesh = 8;
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
-%       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1])
-%    [err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n)
+%       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
+%    [err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
 %    basis_functions_weighted_p2.m
 %    display_errors.m
@@ -59,7 +61,7 @@ if mesh_level > 1
     [p2,t2] = find_midpoints(p,t);
 
     [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n);
+    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     for i = 2:mesh_level
         % Refine mesh to next level
@@ -70,7 +72,7 @@ if mesh_level > 1
         [p2,t2] = find_midpoints(p,t);
 
         [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n);
+        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     end
     display_errors(err,grad_err,max_err)

@@ -1,4 +1,4 @@
-function [err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
+function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n)
 %WEIGHTED_HL_K_0_e Weighted Hodge Laplacian with k = 0. 
 %   This program is set up to be given an exact solution.
 %
@@ -58,7 +58,7 @@ if mesh_level > 1
 
     [p2,t2] = find_midpoints(p,t);
 
-    [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n);
+    [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
     [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n);
 
     for i = 2:mesh_level
@@ -69,7 +69,7 @@ if mesh_level > 1
         % Find the midpoints for P2 nodal points
         [p2,t2] = find_midpoints(p,t);
 
-        [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n);
+        [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
         [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n);
 
     end
@@ -82,10 +82,10 @@ end
 end
 
 % subfunction
-function [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n)
+function [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n)
     basis = basis_functions_weighted_p2(p,t,p2,t2);
     S = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n);
-    b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n);
+    b = create_b_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
     Qh = S\b;
 
     figure();

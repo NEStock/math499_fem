@@ -22,13 +22,13 @@ function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns
 %         indicies
 %
 % Usage Exampled:
-%    [f,grad_f_r,grad_f_z] = get_f_data1();
-%    [u,grad_u_r,grad_u_z] = get_u_data1();
+%    [f,grad_f_r,grad_f_z] = get_data1_f();
+%    [u,grad_u_r,grad_u_z] = get_data1_u();
 %    mesh = 8;
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+%    [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
 %    basis_functions_weighted_p2.m
 %    display_errors.m

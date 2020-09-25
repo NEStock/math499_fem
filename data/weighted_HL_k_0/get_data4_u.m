@@ -4,7 +4,7 @@ function [u,grad_u_r,grad_u_z] = get_data4_u()
 %   u = r^(2/3)
 
 u = @(r,z) r.^(2./3);
-grad_u_r =@(r,z) (2./3).*r.^(-2./3);
+grad_u_r =@(r,z) (2./3).*r.^(-1./3);
 grad_u_z =@(r,z) 0;
 end
 

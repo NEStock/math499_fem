@@ -5,6 +5,6 @@ function [u,grad_u_r,grad_u_z] = get_data6_u()
 
 u = @(r,z) r.*sin(z);
 grad_u_r =@(r,z) sin(z);
-grad_u_z =@(r,z) -r.*cos(z);
+grad_u_z =@(r,z) r.*cos(z);
 end
 

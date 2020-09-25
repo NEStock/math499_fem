@@ -4,7 +4,7 @@ function [u,grad_u_r,grad_u_z] = get_data5_u()
 %   u = r^(5/6)
 
 u = @(r,z) r.^(5./6);
-grad_u_r =@(r,z) (5./6).*r.^(-5./6);
+grad_u_r =@(r,z) (5./6).*r.^(-1./6);
 grad_u_z =@(r,z) 0;
 end
 

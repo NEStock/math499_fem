@@ -18,7 +18,7 @@ function basis = basis_functions_weighted_p2(p,t,p2,t2)
 %         function for the ith node in triangle T. 
 %
 % Author: Nicole Stock
-% Date: Spring 2020
+% Date: Fall 2020
     
 [~,triangles] = size(t);
 basis = zeros(6,6,triangles);

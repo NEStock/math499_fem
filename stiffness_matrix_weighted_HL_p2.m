@@ -18,7 +18,7 @@ function stiffness_matrix = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n)
 %     stiffness_matrix - stiffness matrix
 %
 % Author: Nicole Stock
-% Date: Spring 2020
+% Date: Fall 2020
 
 [~,triangles] = size(t);
 [~,nodes] = size(p);

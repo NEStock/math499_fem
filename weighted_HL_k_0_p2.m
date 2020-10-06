@@ -1,5 +1,5 @@
-function [err,grad_err,max_err] = weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
-%WEIGHTED_HL_K_0 Weighted Hodge Laplacian with k = 0.
+function [err,grad_err,max_err] = weighted_HL_k_0_p2(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n)
+%WEIGHTED_HL_K_0_P2 Weighted Hodge Laplacian with k = 0.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
@@ -25,13 +25,14 @@ function [err,grad_err,max_err] = weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,m
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %    (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err,grad_err,max_err] = weighted_HL_k_0(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n)
+%    [err,grad_err,max_err] = weighted_HL_k_0_p2(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n)
 % Dependencies:
-%    basis_functions_weighted_p2.m
+%    basis_functions_weighted_HL_p2.m
+%    create_b_HL_p2.m
 %    display_errors.m
-%    errors_no_exact_weighted_p2.m
+%    errors_no_exact_weighted_HL_p2.m
 %    prolongation_matrix.m
-%    stiffness_matrix_weighted_p2.m
+%    stiffness_matrix_weighted_HL_p2.m
 %
 % Note:
 %    prolongation_matrix.m not working yet. Thus errors are wrong.
@@ -86,7 +87,7 @@ if mesh_level > 1
         
         % Solve
         [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n);
-        [err(i),grad_err(i),max_err(i)] = errors_no_exact_weighted_p2(p,t,p2,t2,basis,Qh_extended,Qh,n);
+        [err(i),grad_err(i),max_err(i)] = errors_no_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh_extended,Qh,n);
     end
     
     display_errors(err,grad_err,max_err)
@@ -98,10 +99,10 @@ end
 
 % subfunction
 function [basis,Qh] = solve(p,p2,e,t,t2,u,grad_u_r,grad_u_z,n)
-    basis = basis_functions_weighted_p2(p,t,p2,t2);
-    S = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n);
+    basis = basis_functions_weighted_HL_p2(p,t,p2,t2);
+    S = stiffness_matrix_weighted_HL_p2(p,t,p2,t2,basis,n);
     disp(S);
-    b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n);
+    b = create_b_HL_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n);
     disp(b);
     Qh = S\b;
     disp(Qh);

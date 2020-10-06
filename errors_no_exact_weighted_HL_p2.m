@@ -1,4 +1,4 @@
-function [err,grad_err,max_err] = errors_no_exact_weighted_p2(p,t,p2,t2,basis,u_h_km1,u_h_k,n)
+function [err,grad_err,max_err] = errors_no_exact_weighted_HL_p2(p,t,p2,t2,basis,u_h_km1,u_h_k,n)
 % ERRORS_NO_EXACT_WEIGHTED_p2 - Calculate the errors of our solution u_h_km1
 % compared to the approximate solution for the next mesh level (u_h_k).
 %
@@ -23,7 +23,7 @@ function [err,grad_err,max_err] = errors_no_exact_weighted_p2(p,t,p2,t2,basis,u_
 %    max_err - max error
 %
 % Author: Nicole Stock
-% Date: Spring 2020
+% Date: Fall 2020
 
 [~,triangles] = size(t);
 [~,nodes] = size(p);

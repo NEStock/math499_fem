@@ -1,5 +1,5 @@
-function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
-%WEIGHTED_HL_K_0_e Weighted Hodge Laplacian with k = 0. 
+function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
+%WEIGHTED_HL_K_0_P2_E Weighted Hodge Laplacian with k = 0. 
 %   This program is set up to be given an exact solution.
 %
 % Syntax:
@@ -28,15 +28,17 @@ function [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err,grad_err,max_err] = weighted_HL_k_0_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+%    [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
-%    basis_functions_weighted_p2.m
+%    basis_functions_weighted_HL_p2.m
+%    create_b_HL_p2.m
 %    display_errors.m
-%    errors_exact_weighted_p2.m
-%    stiffness_matrix_weighted_p2.m
+%    errors_exact_weighted_HL_p2.m
+%    stiffness_matrix_weighted_HL_p2.m
 %
 % Author: Nicole Stock
 % Date: Fall 2020
+
 addpath('data')
 
 model=createpde(1);
@@ -61,7 +63,7 @@ if mesh_level > 1
     [p2,t2] = find_midpoints(p,t);
 
     [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
+    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     for i = 2:mesh_level
         % Refine mesh to next level
@@ -72,7 +74,7 @@ if mesh_level > 1
         [p2,t2] = find_midpoints(p,t);
 
         [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
+        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     end
     display_errors(err,grad_err,max_err)
@@ -85,11 +87,11 @@ end
 
 % subfunction
 function [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n)
-    basis = basis_functions_weighted_p2(p,t,p2,t2);
-    S = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n);
-    b = create_b_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
+    basis = basis_functions_weighted_HL_p2(p,t,p2,t2);
+    S = stiffness_matrix_weighted_HL_p2(p,t,p2,t2,basis,n);
+    b = create_b_HL_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
     Qh = S\b;
 
-    figure();
-    pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
+    %figure();
+    %pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
 end

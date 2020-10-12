@@ -1,5 +1,5 @@
 function stiffness_matrix = stiffness_matrix_weighted_nedelec(p,t,ed,t_ed,basis)
-% STIFFNESS_MATRIX_WEIGHTED_NEDELEC - Create stiffness matrix with weight n
+% STIFFNESS_MATRIX_WEIGHTED_NEDELEC - Create stiffness matrix
 %
 % Syntax:
 %     A = stiffness_matrix_weighted_nedelec(p,t,p2,t2,basis,k)
@@ -8,11 +8,13 @@ function stiffness_matrix = stiffness_matrix_weighted_nedelec(p,t,ed,t_ed,basis)
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The end row of T represents the geometry face ID 
-%         to which the element belongs
+%         to which the element belongs.
+%     ed - a 2xNumEdges matrix representing edges by their node IDs.
+%     t - a 3xNumTriangles matrix representing the element connectivity in 
+%         terms of edge IDs.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
 %         the pieceiwise basis function for the ith node in triangle k.
-%     n - given weight
 %
 % Outputs:
 %     stiffness_matrix - stiffness matrix
@@ -59,8 +61,7 @@ for T = 1:triangles
             % curl_rz(v) = curl_rz[ v_r ; v_z ]
             %            = partial_deriv_z(v_r) - partial_deriv_r(v_z)
             %
-            % phi_i = [ B - Ay ; C + Ax ]
-            %       = [ B - Az ; C + Ar ]
+            % phi_i = [ B - Az ; C + Ar ]
             %
             % curl_rz(phi_i) = partial_deriv_z(B - Az) - partial_deriv_r(C + Ar)
             %                = -A - A

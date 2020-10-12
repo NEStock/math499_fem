@@ -27,7 +27,7 @@ for i = 1:m
     % for each triangle
     for T = 1:nt
         % if each vertex of edge is a member of triangle T
-        if ismember(ed(i,1),t(1:3,T)) && ismember(ed(i,1),t(1:3,T))
+        if ismember(ed(i,1),t(1:3,T)) && ismember(ed(i,2),t(1:3,T))
             if isnan(t_ed(1,T))
                 t_ed(1,T) = i;
             elseif isnan(t_ed(2,T))

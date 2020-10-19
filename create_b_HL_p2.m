@@ -1,4 +1,4 @@
-function b = create_b_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
+function b = create_b_HL_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
 % CREATE_B_P2 - Create vector b
 %
 % Syntax:

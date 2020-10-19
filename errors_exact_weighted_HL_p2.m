@@ -1,22 +1,29 @@
 function [err,grad_err,max_err] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,u_h,n,u,grad_u_r,grad_u_z)
                                                                     
-% ERRORS_EXACT_WEIGHTED_p2 - Calculate the errors of our solution u_h
+% ERRORS_EXACT_WEIGHTED_HL_p2 - Calculate the errors of our solution u_h
 % compared to the exact solution u.
 %
 % Syntax:
-%     [err,grad_err,max_err] = errors_exact_weighted_p2(p,e,t,u_h_km1,u_h_k)
+%     [err,grad_err,max_err] = errors_exact_weighted_HL_p2(p,e,t,u_h_km1,u_h_k)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The end row of T represents the geometry face ID 
-%         to which the element belongs
+%         to which the element belongs.
+%     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
+%     t2 - a 3xNumTriangles matrix representing the element connectivity in 
+%         terms of node IDs. The three node IDs in a column are the three
+%         midpoints of the node IDS in corresponding column in t.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle T. 
-%     u_h_km1 - approximate solution for mesh level k-1
-%     u_h_k - approximate solution for mesh level k
-%     n - given weight
+%         the pieceiwise basis function for the ith node in triangle T.
+%     u_h - approximtate solution for u
+%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
+%     weight
+%     u - exact solution
+%     grad_u_r - gradient(u) w.r.t r
+%     grad_u_z - gradient(u) w.r.t z
 %
 % Outputs:
 %    err - L2 error

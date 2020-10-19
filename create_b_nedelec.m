@@ -1,21 +1,28 @@
 function b = create_b_nedelec(p,t,ed,t_ed,basis,f_vec_r,f_vec_z)
-% CREATE_B_NEDELEC - Create vector b
+% CREATE_B_NEDELEC - Create vector b such that 
+%     stiffness_matrix * solution = b.
 %
 % Syntax:
-%     b = create_b_nedelec(p,e,t,basis,f)
+%     b = create_b_nedelec(p,t,ed,t_ed,basis,f_vec_r,f_vec_z)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The end row of T represents the geometry face ID 
 %         to which the element belongs
+%     ed - a 2xNumEdges matrix representing each edge as a row with
+%         starting node in column 1 and the ending node in column 2.
+%     t_ed - a 3xNumTriangles matrix representing the which edges
+%         correspond to which triangles. t_ed(i,T) represents the ith edge
+%         in triangle T.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle k. 
-%     f - input function
+%         functions for each node in each triangle. basis(i,:,T) represents 
+%         the pieceiwise basis function for the ith node in triangle T. 
+%     f_vec_r - given vector r component
+%     f_vec_z - given vector z component
 %
 % Outputs:
-%     b - vector such that stiffness_matrix * b = solution.
+%     b - vector such that stiffness_matrix * solution = b.
 %
 % Author: Nicole Stock
 % Date: Fall 2020

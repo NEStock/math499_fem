@@ -12,8 +12,8 @@ function [t_ed] = find_edges(t,ed)
 %
 % Outputs:
 %     t_ed - a 3xNumTriangles matrix representing the which edges
-%         correspond to which triangles. The three edge IDs in a column are
-%         the three edges in a particular triangle.
+%         correspond to which triangles. t_ed(i,T) represents the ith edge
+%         in triangle T.
 %
 % Author: Nicole Stock
 % Date: Fall 2020

@@ -1,8 +1,9 @@
-function b = create_b_HL_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
-% CREATE_B_P2 - Create vector b
+function b = create_b_HL_p2(p,t,p2,t2,basis,f_fn,grad_f_r,grad_f_z,n)
+% CREATE_B_HL_P2 - Create vector b such that
+%     stiffness_matrix * solution = b.
 %
 % Syntax:
-%     b = create_b_p2(p,e,t,basis,f)
+%     b = create_b_HL_p2(p,t,p2,t2,basis,f_fn,grad_f_r,grad_f_z,n)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
@@ -16,11 +17,14 @@ function b = create_b_HL_p2(p,t,p2,t2,basis,u,grad_u_r,grad_u_z,n)
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
 %         the pieceiwise basis function for the ith node in triangle k.
+%     f - given function
+%     grad_f_r - gradient(f) w.r.t r
+%     grad_f_z - gradient(f) w.r.t z
 %     n - Hodge Laplacian on Axisymmetrix Domain and its Discretization
 %     weight
 %
 % Outputs:
-%     b - vector such that stiffness_matrix * b = solution.
+%     b - vector such that stiffness_matrix * solution = b.
 %
 % Author: Nicole Stock
 % Date: Fall 2020
@@ -60,9 +64,9 @@ for T = 1:triangles
         n_r_I =@(r,z) a.*r.^2 + b.*r.*z + c.*z.^2 + d.*r + e.*z + f;
         grad_I_z =@(r,z) (1./n).*(b.*r.^2 + 2.*c.*r.*z + e.*r);
         
-        integrand =@(r,z) (grad_u_r(r,z).*grad_I_r(r,z) ...
-            + (n./r).*u(r,z).*n_r_I(r,z) ...
-            + grad_u_z(r,z).*grad_I_z(r,z)).*r;
+        integrand =@(r,z) (grad_f_r(r,z).*grad_I_r(r,z) ...
+            + (n./r).*f_fn(r,z).*n_r_I(r,z) ...
+            + grad_f_z(r,z).*grad_I_z(r,z)).*r;
         
         % Integrate and solve
         b_i = Wx'*feval(integrand,X,Y)*Wy;

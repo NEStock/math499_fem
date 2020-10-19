@@ -1,18 +1,22 @@
-function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
+function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 %WEIGHTED_HL_K_0_P2_E Weighted Hodge Laplacian with k = 0. 
 %   This program is set up to be given an exact solution.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
-%       weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh_level,n,u,grad_u_r,grad_u_z)
+%       weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 %
 % Inputs:
 %     f - given function
+%     grad_f_r - gradient(f) w.r.t r
+%     grad_f_z - gradient(f) w.r.t z
 %     gd,sf,ns - outputs of pdepoly specifying domain
-%     mesh_level - max mesh level
-%     n - Hodge Laplacian on Axisymmetrix Domain and its Discretization
+%     mesh - max mesh level
+%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
 %     weight
 %     u - exact solution
+%     grad_u_r - gradient(u) w.r.t r
+%     grad_u_z - gradient(u) w.r.t z
 %
 % Outputs:
 %     err - array of L2 errors for mesh levels corresponding to indices
@@ -30,6 +34,7 @@ function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
 %    [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
+%    find_midpoints.m
 %    basis_functions_weighted_HL_p2.m
 %    create_b_HL_p2.m
 %    display_errors.m
@@ -48,11 +53,11 @@ geometryFromEdges(model,g);
 %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
 % Init error vectors
-err = zeros(1,mesh_level);
-grad_err = zeros(1,mesh_level);
-max_err = zeros(1,mesh_level);
+err = zeros(1,mesh);
+grad_err = zeros(1,mesh);
+max_err = zeros(1,mesh);
 
-if mesh_level > 1
+if mesh > 1
     % To ensure we refine every triangle the same
     [~,num_node]=size(p);
     it=zeros(1,num_node);
@@ -65,7 +70,7 @@ if mesh_level > 1
     [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
     [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
-    for i = 2:mesh_level
+    for i = 2:mesh
         % Refine mesh to next level
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
@@ -92,6 +97,6 @@ function [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n)
     b = create_b_HL_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
     Qh = S\b;
 
-    %figure();
-    %pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
+    figure();
+    pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
 end

@@ -11,7 +11,7 @@ function [p2,t2] = find_midpoints(p,t)
 %
 % Outputs:
 %     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
-%     t2 - a 4xNumTriangles matrix representing the element connectivity in 
+%     t2 - a 3xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The three node IDs in a column are the three
 %         midpoints of the node IDS in corresponding column in t.
 %

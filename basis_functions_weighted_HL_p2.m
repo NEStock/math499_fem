@@ -1,16 +1,19 @@
-function basis = basis_functions_weighted_p2(p,t,p2,t2)
-% BASIS_FUNCTIONS_WEIGHTED_P2 - Create a piecewise basis function for each
+function basis = basis_functions_weighted_HL_p2(p,t,p2,t2)
+% BASIS_FUNCTIONS_WEIGHTED_HL_P2 - Create a piecewise basis function for each
 % node of a triangulation with weight k
 %
 % Syntax:
-%     basis = basis_functions_weighted_p2(p,t,p2,t2)
+%     basis = basis_functions_weighted_HL_p2(p,t,p2,t2)
 % 
 % Inputs:
-%     p - a 2-by-NumNodes matrix representing nodal coordinates.
-%     t - a matrix representing the element connectivity in terms of node
-%         IDs. The end row of T represents the geometry face ID to which the
-%         element belongs
-%     k - given weight
+%     p - a 2xNumNodes matrix representing nodal coordinates.
+%     t - a 4xNumTriangles matrix representing the element connectivity in
+%         terms of node IDs. The end row of T represents the geometry face 
+%         ID to which the element belongs.
+%     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
+%     t2 - a 3xNumTriangles matrix representing the element connectivity in
+%         terms of node IDs. The three node IDs in a column are the three
+%         midpoints of the node IDS in corresponding column in t.
 %
 % Outputs:
 %     basis - a matrix representing piece-wise basis functions for each node

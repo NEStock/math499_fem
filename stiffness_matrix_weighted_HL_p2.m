@@ -1,18 +1,23 @@
-function stiffness_matrix = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,n)
-% STIFFNESS_MATRIX_WEIGHTED_P2 - Create stiffness matrix with weight n
+function stiffness_matrix = stiffness_matrix_weighted_HL_p2(p,t,p2,t2,basis,n)
+% STIFFNESS_MATRIX_WEIGHTED_HL_P2 - Create stiffness matrix with weight n
 %
 % Syntax:
-%     A = stiffness_matrix_weighted_p2(p,t,p2,t2,basis,k)
+%     A = stiffness_matrix_weighted_HL_p2(p,t,p2,t2,basis,k)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The end row of T represents the geometry face ID 
-%         to which the element belongs
+%         to which the element belongs.
+%     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
+%     t2 - a 3xNumTriangles matrix representing the element connectivity in 
+%         terms of node IDs. The three node IDs in a column are the three
+%         midpoints of the node IDS in corresponding column in t.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
 %         the pieceiwise basis function for the ith node in triangle k.
-%     n - given weight
+%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
+%     weight
 %
 % Outputs:
 %     stiffness_matrix - stiffness matrix

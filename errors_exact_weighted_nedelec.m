@@ -1,25 +1,30 @@
 function [err] = errors_exact_weighted_nedelec(p,t,t_ed,basis,x,u_vec_r,u_vec_z)
-% ERRORS_EXACT_WEIGHTED_NEDELEC - Calculate the errors of our solution u_h
+% ERRORS_EXACT_WEIGHTED_NEDELEC - Calculate the errors of our solution x
 % compared to the exact solution u.
 %
 % Syntax:
-%     [err,grad_err,max_err] = errors_exact_weighted_nedelec(p,t,ed,t_ed,basis,x,u_vec_r,u_vec_z)
+%     [err,grad_err,max_err] = 
+%         errors_exact_weighted_nedelec(p,t,t_ed,basis,x,u_vec_r,u_vec_z)
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The end row of T represents the geometry face ID 
 %         to which the element belongs
+%     t_ed - a 3xNumTriangles matrix representing the which edges
+%         correspond to which triangles. t_ed(i,T) represents the ith edge
+%         in triangle T.
 %     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,k) represents 
-%         the pieceiwise basis function for the ith node in triangle k. 
+%         functions for each node in each triangle. basis(i,:,T) represents 
+%         the pieceiwise basis function for the ith node in triangle T. 
+%     x - approximated solution
+%     u_vec_r - exact solution vector r component
+%     u_vec_z - exact solution vector z component
 %
 % Outputs:
 %    err - L2 error
-%    grad_err - L2 gradient error
-%    max_err - max error
 %
 % Author: Nicole Stock
-% Date: Spring 2020
+% Date: Fall 2020
 
 [~,triangles] = size(t);
 

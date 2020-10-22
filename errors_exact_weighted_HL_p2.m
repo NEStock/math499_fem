@@ -15,7 +15,7 @@ function [err,grad_err,max_err] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,u_
 %     t2 - a 3xNumTriangles matrix representing the element connectivity in 
 %         terms of node IDs. The three node IDs in a column are the three
 %         midpoints of the node IDS in corresponding column in t.
-%     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
+%     basis - a 6x6xNumTriangles matrix representing piece-wise basis 
 %         functions for each node in each triangle. basis(i,:,k) represents 
 %         the pieceiwise basis function for the ith node in triangle T.
 %     u_h - approximtate solution for u

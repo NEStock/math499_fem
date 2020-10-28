@@ -66,7 +66,7 @@ if mesh > 1
     end   
 
     [basis_nodes,basis_edges,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_th,f_vec_z,n);
-    err(1) = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z);
+    err(1) = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z,n);
     
     for i = 2:mesh
         % Refine mesh to next level
@@ -77,7 +77,7 @@ if mesh > 1
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis_nodes,basis_edges,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_th,f_vec_z,n);
-        err(i) = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z);
+        err(i) = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z,n);
     end
     display_errors(err, nan(1,mesh), nan(1,mesh));
 

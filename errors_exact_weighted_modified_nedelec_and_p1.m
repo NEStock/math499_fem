@@ -1,4 +1,4 @@
-function [err] = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z)
+function [err] = errors_exact_weighted_modified_nedelec_and_p1(p,t,t_ed,basis_nodes,basis_edges,x,u_vec_r,u_vec_th,u_vec_z,n)
 % ERRORS_EXACT_WEIGHTED_MODIFIED_NEDELEC_AND_P1 - Calculate the errors of our solution x
 % compared to the exact solution u.
 %
@@ -34,10 +34,10 @@ for T = 1:triangles
     
     % get coordinates of triangle T
     coordinates = zeros(3,2);
-    for n = 1:3
-        node = t(n,T);
+    for i = 1:3
+        node = t(i,T);
         % get x,y coordinates
-        coordinates(n,:) = p(:,node);
+        coordinates(i,:) = p(:,node);
     end
         
     [X,Y,Wx,Wy] = triquad(7, coordinates);

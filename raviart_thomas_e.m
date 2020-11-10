@@ -25,11 +25,11 @@ function [err] = raviart_thomas_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 %    [err] = raviart_thomas_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 % Dependencies:
 %    find_edges.m
-%    basis_functions_weighted_nedelec.m
-%    create_b_nedelec.m
+%    basis_functions_rt.m
+%    create_b_rt.m
 %    display_errors.m
-%    errors_exact_weighted_nedelec.m
-%    stiffness_matrix_weighted_nedelec.m
+%    errors_exact_rt.m
+%    stiffness_matrix_rt.m
 %
 % Author: Nicole Stock
 % Date: Fall 2020

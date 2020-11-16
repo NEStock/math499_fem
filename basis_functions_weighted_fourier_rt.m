@@ -7,6 +7,9 @@ function [basis_edges, basis_triangles] = basis_functions_weighted_fourier_rt(p,
 % 
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
+%     t - a 4xNumTriangles matrix representing the element connectivity in
+%         terms of node IDs. The end row of T represents the geometry face 
+%         ID to which the element belongs.
 %     ed - a 2xNumEdges matrix representing each edge as a row with
 %         starting node in column 1 and the ending node in column 2.
 %     t_ed - a 3xNumTriangles matrix representing the which edges
@@ -14,9 +17,12 @@ function [basis_edges, basis_triangles] = basis_functions_weighted_fourier_rt(p,
 %         in triangle T.
 %
 % Outputs:
-%     basis - a matrix representing piece-wise basis functions for each
-%         edge in each triangle. basis(i,:,T) represents the pieceiwise 
-%         basis function for the ith edge in triangle T.
+%     basis_edges - a matrix representing piece-wise basis functions for 
+%         each edge in each triangle. basis(i,:,T) represents the  
+%         pieceiwise basis function for the ith edge in triangle T.
+%     basis_triangles - a matrix representing piece-wise basis functions 
+%         for each triangle. basis(1,T) represents the pieceiwise basis 
+%         function for triangle T.
 %
 % Author: Nicole Stock
 % Date: Fall 2020

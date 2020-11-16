@@ -7,6 +7,9 @@ function basis = basis_functions_rt(p,t,ed,t_ed)
 % 
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
+%     t - a 4xNumTriangles matrix representing the element connectivity in
+%         terms of node IDs. The end row of T represents the geometry face 
+%         ID to which the element belongs.
 %     ed - a 2xNumEdges matrix representing each edge as a row with
 %         starting node in column 1 and the ending node in column 2.
 %     t_ed - a 3xNumTriangles matrix representing the which edges

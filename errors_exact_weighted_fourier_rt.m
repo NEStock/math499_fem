@@ -1,24 +1,32 @@
 function [err] = errors_exact_weighted_fourier_rt(p,t,ed,t_ed,basis_edges,basis_triangles,x,u_vec_r,u_vec_th,u_vec_z,n)
-% ERRORS_EXACT_WEIGHTED_MODIFIED_FOURIER_RT - Calculate the errors of our solution x
+% ERRORS_EXACT_WEIGHTED_FOURIER_RT - Calculate the errors of our solution x
 % compared to the exact solution u.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
-%         errors_exact_weighted_fourier_rt(p,t,t_ed,basis,x,u_vec_r,u_vec_z)
+%         errors_exact_weighted_fourier_rt(p,t,ed,t_ed,basis_edges,basis_triangles,x,u_vec_r,u_vec_th,u_vec_z,n)
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
-%         terms of node IDs. The end row of T represents the geometry face ID 
-%         to which the element belongs
+%         terms of node IDs. The end row of T represents the geometry face 
+%         ID to which the element belongs.
+%     ed - a 2xNumEdges matrix representing each edge as a row with
+%         starting node in column 1 and the ending node in column 2.
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - a 3x3xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T. 
+%     basis_edges - a matrix representing piece-wise basis functions for 
+%         each edge in each triangle. basis(i,:,T) represents the 
+%         pieceiwise basis function for the ith edge in triangle T.
+%     basis_triangles - a vector representing piece-wise basis functions
+%         for edge triangle. basis(1,T) represents the piecewise basis
+%         function for the Tth triangle.
 %     x - approximated solution
 %     u_vec_r - exact solution vector r component
+%     u_vec_th - exact solution vector theta component
 %     u_vec_z - exact solution vector z component
+%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
+%     weight
 %
 % Outputs:
 %    err - L2 error

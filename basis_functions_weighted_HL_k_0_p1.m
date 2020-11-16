@@ -10,10 +10,6 @@ function basis = basis_functions_weighted_HL_k_0_p1(p,t)
 %     t - a 4xNumTriangles matrix representing the element connectivity in
 %         terms of node IDs. The end row of T represents the geometry face 
 %         ID to which the element belongs.
-%     p2 - a 2xNumNodes matrix representing midpoint nodal coordinates.
-%     t2 - a 3xNumTriangles matrix representing the element connectivity in
-%         terms of node IDs. The three node IDs in a column are the three
-%         midpoints of the node IDS in corresponding column in t.
 %
 % Outputs:
 %     basis - a matrix representing piece-wise basis functions for each node

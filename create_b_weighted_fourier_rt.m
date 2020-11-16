@@ -21,11 +21,11 @@ function b = create_b_weighted_fourier_rt(p,t,ed,t_ed,basis_edges,basis_triangle
 %     basis_triangles - a vector representing piece-wise basis functions
 %         for edge triangle. basis(1,T) represents the piecewise basis
 %         function for the Tth triangle.
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
 %     f_vec_r - given vector r component
 %     f_vec_th - given vector theta component
 %     f_vec_z - given vector z component
+%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
+%     weight
 %
 % Outputs:
 %     b - vector such that stiffness_matrix * solution = b.

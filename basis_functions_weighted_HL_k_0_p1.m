@@ -1,9 +1,9 @@
-function basis = basis_functions_weighted_HL_p1(p,t)
-% BASIS_FUNCTIONS_WEIGHTED_HL_P1 - Create a piecewise basis function for each
+function basis = basis_functions_weighted_HL_k_0_p1(p,t)
+% BASIS_FUNCTIONS_WEIGHTED_HL_K_0_P1 - Create a piecewise basis function for each
 % node of a triangulation with weight k
 %
 % Syntax:
-%     basis = basis_functions_weighted_HL_p2(p,t,p2,t2)
+%     basis = basis_functions_weighted_HL_k_0_p1(p,t,p2,t2)
 % 
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.

@@ -68,7 +68,7 @@ if mesh > 1
     [p2,t2] = find_midpoints(p,t);
 
     [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
+    [err(1),grad_err(1),max_err(1)] = errors_exact_weighted_HL_k_0_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     for i = 2:mesh
         % Refine mesh to next level
@@ -79,7 +79,7 @@ if mesh > 1
         [p2,t2] = find_midpoints(p,t);
 
         [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n);
-        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_HL_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
+        [err(i),grad_err(i),max_err(i)] = errors_exact_weighted_HL_k_0_p2(p,t,p2,t2,basis,Qh,n,u,grad_u_r,grad_u_z);
 
     end
     display_errors(err,grad_err,max_err)
@@ -92,9 +92,9 @@ end
 
 % subfunction
 function [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n)
-    basis = basis_functions_weighted_HL_p2(p,t,p2,t2);
-    S = stiffness_matrix_weighted_HL_p2(p,t,p2,t2,basis,n);
-    b = create_b_HL_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
+    basis = basis_functions_weighted_HL_k_0_p2(p,t,p2,t2);
+    S = stiffness_matrix_weighted_HL_k_0_p2(p,t,p2,t2,basis,n);
+    b = create_b_HL_k_0_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
     Qh = S\b;
 
     figure();

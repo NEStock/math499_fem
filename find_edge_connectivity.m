@@ -37,6 +37,8 @@ function [t_ed] = find_edges(t,ed,mesh)
     t_ed = find(t,ed);
  end
  
+end
+ 
  % subfunction
  function [t_ed] = find(t,ed)
     [m,~] = size(ed);

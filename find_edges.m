@@ -1,4 +1,4 @@
-function [t_ed] = find_edges(t,ed)
+function [t_ed] = find_edges(t,ed,mesh)
 % FIND_EDGES - Find the edges in each triangulation in the mesh
 %
 % Syntax:
@@ -9,6 +9,7 @@ function [t_ed] = find_edges(t,ed)
 %         ID to which the element belongs.
 %     ed - a 2xNumNodes matrix representing each edge as a row with
 %         starting node in column 1 and the ending node in column 2.
+%     mesh - optional parameter indicating mesh level
 %
 % Outputs:
 %     t_ed - a 3xNumTriangles matrix representing the which edges
@@ -18,23 +19,44 @@ function [t_ed] = find_edges(t,ed)
 % Author: Nicole Stock
 % Date: Fall 2020
 
-[m,~] = size(ed);
-[mt,nt] = size(t);
-t_ed = NaN(mt-1,nt);
+ if exist('mesh','var')
+     % mesh is given
+     if mesh == 6 && isfile('edge_resources/t_ed_6.mat')
+         t_ed_6 = load('edge_resources/t_ed_6.mat');
+         t_ed = t_ed_6.t_ed_6;
+     elseif mesh == 7  && isfile('edge_resources/t_ed_7.mat')
+         t_ed_7 = load('edge_resources/t_ed_7.mat');
+         t_ed = t_ed_7.t_ed_7;
+     elseif mesh == 8  && isfile('edge_resources/t_ed_8.mat')
+         t_ed_8 = load('edge_resources/t_ed_8.mat');
+         t_ed = t_ed_8.t_ed_8;
+     else
+         t_ed = find(t,ed);
+     end
+ else
+    t_ed = find(t,ed);
+ end
+ 
+ % subfunction
+ function [t_ed] = find(t,ed)
+    [m,~] = size(ed);
+    [mt,nt] = size(t);
+    t_ed = NaN(mt-1,nt);
 
-% for each edge (rep as a row in edges_)
-for i = 1:m
-    % for each triangle
-    for T = 1:nt
-        % if each vertex of edge is a member of triangle T
-        if ismember(ed(i,1),t(1:3,T)) && ismember(ed(i,2),t(1:3,T))
-            if isnan(t_ed(1,T))
-                t_ed(1,T) = i;
-            elseif isnan(t_ed(2,T))
-                t_ed(2,T) = i;
-            else
-                t_ed(3,T) = i;
-            end                
+    % for each edge (rep as a row in edges_)
+    for i = 1:m
+        % for each triangle
+        for T = 1:nt
+            % if each vertex of edge is a member of triangle T
+            if ismember(ed(i,1),t(1:3,T)) && ismember(ed(i,2),t(1:3,T))
+                if isnan(t_ed(1,T))
+                    t_ed(1,T) = i;
+                elseif isnan(t_ed(2,T))
+                    t_ed(2,T) = i;
+                else
+                    t_ed(3,T) = i;
+                end                
+            end
         end
     end
-end
+ end

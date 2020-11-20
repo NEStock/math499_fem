@@ -26,7 +26,7 @@ function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_ve
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
 %    [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_vec_z,p_exact,n)
 % Dependencies:
-%    find_edges.m
+%    find_edge_connectivity.m
 %    basis_functions_weighted_fourier_rt.m
 %    create_B_weighted_HL_k_3_p1.m
 %    create_F_weighted_HL_k_3_p1.m
@@ -46,7 +46,7 @@ geometryFromEdges(model,g);
 [p,e,t]=initmesh(g,'hmax',inf);
 tr = triangulation(t(1:3,:)',p');
 ed = edges(tr);
-t_ed = find_edges(t,ed);
+t_ed = find_edge_connectivity(t,ed);
 %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
 % Init error vector
@@ -69,7 +69,7 @@ if mesh > 1
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
         tr = triangulation(t(1:3,:)',p');
         ed = edges(tr);
-        t_ed = find_edges(t,ed,i);
+        t_ed = find_edge_connectivity(t,ed,i);
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis_edges,basis_triangles,z_h,p_h] = solve(p,e,t,ed,t_ed,f,n);

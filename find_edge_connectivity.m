@@ -1,4 +1,4 @@
-function [t_ed] = find_edges(t,ed,mesh)
+function [t_ed] = find_edge_connectivity(t,ed,mesh)
 % FIND_EDGES - Find the edges in each triangulation in the mesh
 %
 % Syntax:

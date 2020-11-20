@@ -31,7 +31,7 @@ function [err] = weighted_modified_nedelec_and_p1_e(f_vec_r,f_vec_th,f_vec_z,gd,
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
 %    [err] = weighted_modified_nedelec_and_p1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,n,u_vec_r,u_vec_th,u_vec_z);
 % Dependencies:
-%    find_edges.m
+%    find_edge_connectivity.m
 %    basis_functions_weighted_modified_nedelec_and_p1.m
 %    basis_functions_weighted_HL_p1.m
 %    basis_functions_weighted_nedelec.m
@@ -51,7 +51,7 @@ geometryFromEdges(model,g);
 [p,e,t]=initmesh(g,'hmax',inf);
 tr = triangulation(t(1:3,:)',p');
 ed = edges(tr);
-t_ed = find_edges(t,ed);
+t_ed = find_edge_connectivity(t,ed);
 %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
 % Init error vector
@@ -73,7 +73,7 @@ if mesh > 1
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
         tr = triangulation(t(1:3,:)',p');
         ed = edges(tr);
-        t_ed = find_edges(t,ed);
+        t_ed = find_edge_connectivity(t,ed,i);
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis_nodes,basis_edges,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_th,f_vec_z,n);

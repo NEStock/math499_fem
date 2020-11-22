@@ -19,28 +19,28 @@ function [t_ed] = find_edge_connectivity(t,ed,mesh)
 % Author: Nicole Stock
 % Date: Fall 2020
 
- if exist('mesh','var')
-     % mesh is given
-     if mesh == 6 && isfile('edge_resources/t_ed_6.mat')
-         t_ed_6 = load('edge_resources/t_ed_6.mat');
-         t_ed = t_ed_6.t_ed_6;
-     elseif mesh == 7  && isfile('edge_resources/t_ed_7.mat')
-         t_ed_7 = load('edge_resources/t_ed_7.mat');
-         t_ed = t_ed_7.t_ed_7;
-     elseif mesh == 8  && isfile('edge_resources/t_ed_8.mat')
-         t_ed_8 = load('edge_resources/t_ed_8.mat');
-         t_ed = t_ed_8.t_ed_8;
-     else
-         t_ed = find(t,ed);
-     end
- else
+if exist('mesh','var')
+	% mesh is given
+    if mesh == 6 && isfile('edge_resources/t_ed_6.mat')
+        t_ed_6 = load('edge_resources/t_ed_6.mat');
+        t_ed = t_ed_6.t_ed_6;
+    elseif mesh == 7  && isfile('edge_resources/t_ed_7.mat')
+        t_ed_7 = load('edge_resources/t_ed_7.mat');
+        t_ed = t_ed_7.t_ed_7;
+    elseif mesh == 8  && isfile('edge_resources/t_ed_8.mat')
+        t_ed_8 = load('edge_resources/t_ed_8.mat');
+        t_ed = t_ed_8.t_ed_8;
+    else
+        t_ed = find(t,ed);
+    end
+else
     t_ed = find(t,ed);
- end
+end
  
 end
  
- % subfunction
- function [t_ed] = find(t,ed)
+% subfunction
+function [t_ed] = find(t,ed)
     [m,~] = size(ed);
     [mt,nt] = size(t);
     t_ed = NaN(mt-1,nt);
@@ -61,4 +61,4 @@ end
             end
         end
     end
- end
+end

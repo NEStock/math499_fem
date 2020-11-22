@@ -32,7 +32,7 @@ function [basis_nodes,basis_edges] = basis_functions_weighted_modified_nedelec_a
 % Date: Fall 2020
   
 % basis_nodes(:,i,T) = basis for the ith node of triangle T
-basis_nodes = basis_functions_weighted_HL_p1(p,t);
+basis_nodes = basis_functions_weighted_HL_k_0_p1(p,t);
 
 % basis_edges(:,i,T) = basis for the ith node of triangle T
 basis_edges = basis_functions_weighted_nedelec(p,ed,t_ed);

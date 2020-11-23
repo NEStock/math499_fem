@@ -2,7 +2,7 @@ function mass_matrix = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,ba
 % MASS_MATRIX_WEIGHTED_HL_K_3_P1 - Create mass matrix
 %
 % Syntax:
-%     A = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis)
+%     A = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,n)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.

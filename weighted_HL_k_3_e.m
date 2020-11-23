@@ -32,7 +32,6 @@ function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_ve
 %    create_F_weighted_HL_k_3_p1.m
 %    display_errors.m
 %    errors_exact_weighted_HL_k_3_p1.m
-%    errors_exact_weighted_fourier_rt.m
 %    mass_matrix_weighted_HL_k_3_p1.m
 %
 % Author: Nicole Stock
@@ -62,7 +61,7 @@ if mesh > 1
     end   
 
     [basis_edges,basis_triangles,z_h,p_h] = solve(p,e,t,ed,t_ed,f,n);
-    [err_z(1),err_p(1)] = errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n);
+    [err_z(1),err_p(1)] = errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n);
     
     for i = 2:mesh
         % Refine mesh to next level
@@ -73,12 +72,12 @@ if mesh > 1
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis_edges,basis_triangles,z_h,p_h] = solve(p,e,t,ed,t_ed,f,n);
-        [err_z(i),err_p(i)] = errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n);
+        [err_z(i),err_p(i)] = errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n);
     end
     fprintf('z\n');
-    display_errors(err_z, nan(1,mesh), nan(1,mesh));
+    display_errors(err_z);
     fprintf('p\n');
-    display_errors(err_p, nan(1,mesh), nan(1,mesh));
+    display_errors(err_p);
 
 end
 % mesh level must be greater than 1

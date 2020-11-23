@@ -1,10 +1,10 @@
-function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n)
+function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n)
 % ERRORS_EXACT_WEIGHTED_HL_K_3_P1 - Calculate the errors of our solution x
 % compared to the exact solution u.
 %
 % Syntax:
 %     [err,grad_err,max_err] = 
-%         errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis,x,u_vec_r,u_vec_z)
+%         errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n)
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.
 %     t - a 4xNumTriangles matrix representing the element connectivity in 
@@ -22,9 +22,9 @@ function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges
 %         for edge triangle. basis(1,T) represents the piecewise basis
 %         function for the Tth triangle.
 %     z_h - approximated solution of z
-%     z_vec_r - exact solution p vector r component
-%     z_vec_r - exact solution p vector theta component
-%     z_vec_z - exact solution p vector z component
+%     z_vec_r - exact solution z vector r component
+%     z_vec_r - exact solution z vector theta component
+%     z_vec_z - exact solution z vector z component
 %     p_h - approximated solution of p
 %     p_exact - exact solution p
 %     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
@@ -36,8 +36,6 @@ function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges
 %
 % Author: Nicole Stock
 % Date: Fall 2020
-
-%err_z = errors_exact_weighted_fourier_rt(p,t,ed,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,n);
 
 [~,triangles] = size(t_ed);
 integral_z = 0;

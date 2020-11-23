@@ -19,9 +19,14 @@ function display_errors(err,grad_err,max_err)
 
 [~,n] = size(err);
 
-fprintf(' Mesh\t| Error\t\t| Convergence\t| Grad. Error\t');
-fprintf('| Convergence\t| Max Error\t| Convergence\n');
-fprintf('------------------------------------------------------------');
+fprintf(' Mesh\t| Error\t\t| Convergence\t|');
+if exist('grad_err','var')
+    fprintf(' Grad. Error\t| Convergence\t|');
+end
+if exist('max_err','var')
+    fprintf(' Max Error\t| Convergence');
+end
+fprintf('\n------------------------------------------------------------');
 fprintf('-------------------------------------------\n');
 for i = 1:n
     fprintf(' %d\t| %2.2e\t|', i, err(i));
@@ -31,20 +36,24 @@ for i = 1:n
     else
         fprintf('\t\t|')
     end
-    fprintf(' %2.2e\t|', grad_err(i));
-    if i >= 2
-        conv = log2(grad_err(i-1)/grad_err(i));
-        fprintf(' %2.2f\t\t|', conv);
-    else
-        fprintf('\t\t|')
-    end
-    fprintf(' %2.2e\t|', max_err(i));
-    if i >= 2
-        conv = log2(max_err(i-1)/max_err(i));
-        fprintf(' %2.2f\t\t', conv);
-    else
-        fprintf('\t\t')
-    end
+    if exist('grad_err','var')
 
+        fprintf(' %2.2e\t|', grad_err(i));
+        if i >= 2
+            conv = log2(grad_err(i-1)/grad_err(i));
+            fprintf(' %2.2f\t\t|', conv);
+        else
+            fprintf('\t\t|')
+        end
+    end
+    if exist('max_err','var')
+        fprintf(' %2.2e\t|', max_err(i));
+        if i >= 2
+            conv = log2(max_err(i-1)/max_err(i));
+            fprintf(' %2.2f\t\t', conv);
+        else
+            fprintf('\t\t')
+        end
+    end
     fprintf('\n');
 end

@@ -42,7 +42,7 @@ geometryFromEdges(model,g);
 [p,e,t]=initmesh(g,'hmax',inf);
 tr = triangulation(t(1:3,:)',p');
 ed = edges(tr);
-t_ed = find_edges(t,ed);
+t_ed = find_edge_connectivity(t,ed);
 %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
 % Init error vector
@@ -64,13 +64,13 @@ if mesh > 1
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
         tr = triangulation(t(1:3,:)',p');
         ed = edges(tr);
-        t_ed = find_edges(t,ed);
+        t_ed = find_edge_connectivity(t,ed,i);
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z);
         err(i) = errors_exact_rt(p,t,t_ed,basis,x,u_vec_r,u_vec_z);
     end
-    display_errors(err, nan(1,mesh), nan(1,mesh));
+    display_errors(err);
 
 end
 % mesh level must be greater than 1

@@ -65,25 +65,6 @@ for T = 1:triangles
             fj = J(6);
             
             % integrate grad(I) * grad(J)
-%%%% DOUBLE CHECK -- n > 0 for all of these problems!
-%             if n == 0
-%                 grad_i_r =@(r,z) 2.*I(1).*r + I(2).*z + I(4);
-%                 grad_i_z =@(r,z) I(2).*r + 2.*I(3).*z + I(5);
-%                 grad_j_r =@(r,z) 2.*J(1).*r + J(2).*z + J(4);
-%                 grad_j_z =@(r,z) J(2).*r + 2.*J(3).*z + J(5);  
-%                 
-%                 grad_integrand =@(r,z) (grad_i_r(r,z).*grad_j_r(r,z) ...
-%                 + grad_i_z(r,z).*grad_j_z(r,z)).*r;
-%                 % integral grad(I) * grad(J)
-%                 Q1 = Wr'*feval(grad_integrand,R,Z)*Wz;
-%                 
-%                 integrand =@(r,z) (I(1).*r.^2 + I(2).*r.*z + I(3).*z.^2 ...
-%                     + I(4).*r + I(5).*z + I(6)).*(J(1).*r.^2 + J(2).*r.*z ...
-%                     + J(3).*z.^2 + J(4).*r + J(5).*z + J(6)).*r;
-%                 % integral I * J
-%                 Q2 = Wr'*feval(integrand,R,Z)*Wz;
-%             else
-
             % grad^k_rz(v) = [ partial_deriv_r(v)
             %                 (-k/r)*v
             %                 partial_deriv_z(v) ]

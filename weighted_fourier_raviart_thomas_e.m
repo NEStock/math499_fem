@@ -70,7 +70,7 @@ if mesh > 1
         [basis_edges,basis_triangles,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_th,f_vec_z,n);
         err(i) = errors_exact_weighted_fourier_rt(p,t,ed,t_ed,basis_edges,basis_triangles,x,u_vec_r,u_vec_th,u_vec_z,n);
     end
-    display_errors(err, nan(1,mesh), nan(1,mesh));
+    display_errors(err);
 
 end
 % mesh level must be greater than 1

@@ -70,7 +70,7 @@ if mesh > 1
         [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z);
         err(i) = errors_exact_weighted_nedelec(p,t,t_ed,basis,x,u_vec_r,u_vec_z);
     end
-    display_errors(err, nan(1,mesh), nan(1,mesh));
+    display_errors(err);
 
 end
 % mesh level must be greater than 1
@@ -85,6 +85,6 @@ function [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z)
     b = create_b_nedelec(p,t,ed,t_ed,basis,f_vec_r,f_vec_z);
     x = S\b;
 
-    figure();
-    pdeplot(p,e,t, 'XYData',x, 'ZData', x, 'Mesh', 'on');
+    %figure();
+    %pdeplot(p,e,t, 'XYData',x, 'ZData', x, 'Mesh', 'on');
 end

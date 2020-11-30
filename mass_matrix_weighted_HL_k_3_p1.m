@@ -1,5 +1,8 @@
 function mass_matrix = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,n)
 % MASS_MATRIX_WEIGHTED_HL_K_3_P1 - Create mass matrix
+%   Hodge Laplacian k = 3 case, P1
+%   (psi_i, psi_j)_r where {psi_k}k=1->(Ne+Nt) is the basis for Ch
+%   (Ch is the weighted fourier Raviart Thomas space)
 %
 % Syntax:
 %     A = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles,n)

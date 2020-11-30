@@ -1,6 +1,7 @@
 function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis_edges,basis_triangles,z_h,z_vec_r,z_vec_th,z_vec_z,p_h,p_exact,n)
 % ERRORS_EXACT_WEIGHTED_HL_K_3_P1 - Calculate the errors of our solution x
 % compared to the exact solution u.
+%   Hodge Laplacian k = 3 case, P1
 %
 % Syntax:
 %     [err,grad_err,max_err] = 

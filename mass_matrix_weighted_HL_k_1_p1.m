@@ -1,5 +1,8 @@
 function mass_matrix = mass_matrix_weighted_HL_k_1_p1(p,t,basis_nodes,n)
 % MASS_MATRIX_WEIGHTED_HL_K_1_P1 - Create mass matrix
+%   Hodge Laplacian k = 1 case, P1
+%   (phi_i, phi_j)_r where {phi_k}k=1->N is the basis for Ah
+%   (Ah is the weighted P1 space)
 %
 % Syntax:
 %     A = mass_matrix_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)

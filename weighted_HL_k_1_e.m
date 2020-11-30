@@ -1,6 +1,16 @@
 function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n)
 %WEIGHTED_HL_K_1_E Hodge Laplacian k = 1 P1 Finite Element Method.
 %   This program is set up to be given an exact solution.
+%   Hodge Laplacian k = 1 case, P1
+%   {phi_i}i=1->N is the basis for Ah
+%   {zeta_j}j=1->N+Ne is the basis for Bh
+%   (Ah is the weighted P1 space)
+%   (Bh is the weighted fourier modified Nedelec and P1 space)
+%   Solve for (s,u) in (Ah x Bh) s.t.
+%       (s , w)_r - (grad_rz^n(w) , u)_r = 0
+%       (grad_rz^n(s) , v)_r + (curl_rz^n(u) , curl_rz^n(v))_r = (f , v)_r
+%           for all w in Ah, v in Bh
+%
 %
 % Syntax:
 %     [err] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n)

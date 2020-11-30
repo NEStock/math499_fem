@@ -1,5 +1,9 @@
 function S = create_S_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
-% CREATE_S_WEIGHTED_HL_K_3_P1 - Create S matrix
+% CREATE_S_WEIGHTED_HL_K_1_P1 - Create S matrix
+%   Hodge Laplacian k = 1 case, P1
+%   (curl_rz^n(zeta_i), curl_rz^n(zeta_j))_r where {zeta_k}k=1->N+Ne is the
+%     basis for Bh
+%   (Bh is the weighted fourier modified Nedelec and P1 space)
 %
 % Syntax:
 %     S = create_S_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)

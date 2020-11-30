@@ -1,5 +1,8 @@
 function F = create_F_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,f_r,f_th,f_z,n)
-% CREATE_F_WEIGHTED_HL_K_3_P1 - Create F matrix
+% CREATE_F_WEIGHTED_HL_K_1_P1 - Create F matrix
+%   Hodge Laplacian k = 1 case, P1
+%   (f, zeta_i)_r where {zeta_j}j=1->N+Ne is the basis for Bh
+%   (Bh is the weighted fourier modified Nedelec and P1 space)
 %
 % Syntax:
 %     F = create_F_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
@@ -20,6 +23,9 @@ function F = create_F_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,f_r
 %     basis_edges - a matrix representing piece-wise basis functions for 
 %         each edge in each triangle. basis(i,:,T) represents the 
 %         pieceiwise basis function for the ith edge in triangle T.
+%     f_vec_r - given function r component
+%     f_vec_th - given function theta component
+%     f_vec_z - given function z component
 %     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
 %     weight
 %

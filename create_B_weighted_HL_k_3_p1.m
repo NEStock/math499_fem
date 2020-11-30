@@ -1,5 +1,10 @@
 function B = create_B_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,basis_triangles)
 % CREATE_B_WEIGHTED_HL_K_3_P1 - Create mass matrix
+%   Hodge Laplacian k = 3 case, P1
+%   (chi_i, div_rz^n(psi_j))_r where {psi_i}i=1->Ne+Nt is the basis for Ch
+%     and {chi_j}j=1->Nt is the basis for Dh
+%   (Ch is the weighted fourier Raviart Thomas space)
+%   (Dh is the piecewise constant space)
 %
 % Syntax:
 %     B = create_B_weighted_HL_k_3_p1(p,t,ed,t_ed,basis)

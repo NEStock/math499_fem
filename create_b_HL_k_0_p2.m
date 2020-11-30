@@ -1,6 +1,7 @@
-function b = create_b_HL_p2(p,t,p2,t2,basis,f_fn,grad_f_r,grad_f_z,n)
-% CREATE_B_HL_P2 - Create vector b such that
+function b = create_b_HL_k_0_p2(p,t,p2,t2,basis,f_fn,grad_f_r,grad_f_z,n)
+% CREATE_B_HL_K_0_P2 - Create vector b such that
 %     stiffness_matrix * solution = b.
+%   Hodge Laplacian k = 0 case, P2
 %
 % Syntax:
 %     b = create_b_HL_p2(p,t,p2,t2,basis,f_fn,grad_f_r,grad_f_z,n)

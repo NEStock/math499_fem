@@ -1,5 +1,10 @@
 function B = create_B_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
-% CREATE_B_WEIGHTED_HL_K_3_P1 - Create B matrix
+% CREATE_B_WEIGHTED_HL_K_1_P1 - Create B matrix
+%   Hodge Laplacian k = 1 case, P1
+%   (grad_rz^n(phi_i), zeta_j)_r where {phi_k}k=1->N is the basis for Ah
+%     and {zeta_l}l=1->N+Ne is the basis for Bh
+%   (Ah is the weighted P1 space)
+%   (Bh is the weighted fourier modified Nedelec and P1 space)
 %
 % Syntax:
 %     B = create_B_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)

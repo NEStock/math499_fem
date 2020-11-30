@@ -4,7 +4,7 @@ function [u_vec_r,u_vec_th,u_vec_z,s,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n)
 %   u = [ r^3(r-1)  = r^4 - r^3
 %         0
 %         0       ]
-%   v = -5r^3 + 4r^2
+%   s = -5r^3 + 4r^2
 %   f = [ -15r^2 + 8r + n^2r^2 - n^2r
 %         2nr^2 - 2nr
 %         0                           ]

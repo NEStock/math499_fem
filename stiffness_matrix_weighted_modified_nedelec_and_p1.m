@@ -1,5 +1,5 @@
 function stiffness_matrix = stiffness_matrix_weighted_modified_nedelec_and_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
-% STIFFNESS_MATRIX_WEIGHTED_NEDELEC - Create stiffness matrix
+% STIFFNESS_MATRIX_WEIGHTED_MODIFIED_NEDELEC_AND_P1 - Create stiffness matrix
 %
 % Syntax:
 %     A = stiffness_matrix_weighted_nedelec(p,t,ed,t_ed,basis)

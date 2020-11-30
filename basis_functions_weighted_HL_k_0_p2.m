@@ -1,6 +1,7 @@
 function basis = basis_functions_weighted_HL_k_0_p2(p,t,p2,t2)
 % BASIS_FUNCTIONS_WEIGHTED_HL_K_0_P2 - Create a piecewise basis function for each
 % node of a triangulation with weight k
+%   Hodge Laplacian k = 0 case, P2
 %
 % Syntax:
 %     basis = basis_functions_weighted_HL_k_0_p2(p,t,p2,t2)

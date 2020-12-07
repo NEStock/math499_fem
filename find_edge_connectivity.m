@@ -30,6 +30,9 @@ if exist('mesh','var')
     elseif mesh == 8  && isfile('edge_resources/t_ed_8.mat')
         t_ed_8 = load('edge_resources/t_ed_8.mat');
         t_ed = t_ed_8.t_ed_8;
+    elseif mesh == 9  && isfile('edge_resources/t_ed_9.mat')
+        t_ed_9 = load('edge_resources/t_ed_9.mat');
+        t_ed = t_ed_9.t_ed_9;
     else
         t_ed = find(t,ed);
     end

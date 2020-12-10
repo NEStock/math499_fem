@@ -97,6 +97,6 @@ function [basis,Qh] = solve(p,p2,e,t,t2,f,grad_f_r,grad_f_z,n)
     b = create_b_HL_k_0_p2(p,t,p2,t2,basis,f,grad_f_r,grad_f_z,n);
     Qh = S\b;
 
-    figure();
-    pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
+   % figure();
+   % pdeplot([p,p2],e,t, 'XYData',Qh, 'ZData', Qh, 'Mesh', 'on');
 end

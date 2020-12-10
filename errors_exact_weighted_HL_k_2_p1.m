@@ -1,6 +1,6 @@
 function [err_u,err_s] = errors_exact_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_nodes,basis_NP1_edges,basis_RT_edges,basis_triangles,u_h,u_vec_r,u_vec_th,u_vec_z,s_h,s_vec_r,s_vec_th,s_vec_z,n)
-% ERRORS_EXACT_WEIGHTED_HL_K_2_P1 - Calculate the errors of our solution x
-% compared to the exact solution u.
+% ERRORS_EXACT_WEIGHTED_HL_K_2_P1 - Calculate the errors of our solution
+% (u_h, s_h) compared to the exact solution (u, s).
 %   Hodge Laplacian k = 2 case, P1
 %
 % Syntax:

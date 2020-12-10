@@ -98,5 +98,5 @@ for T = 1:triangles
 end
 
 S = sparse(i_vec,j_vec,s_vec,edges+triangles,edges+triangles);
-disp(S)
+
 % end

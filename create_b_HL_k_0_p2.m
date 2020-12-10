@@ -84,6 +84,5 @@ for T = 1:triangles
     end
 end
 
-[~,i] = size(p);
 [~,n2] = size(p2);
-b = sparse(i_vec,j_vec,s_vec,i+n2,1);
+b = sparse(i_vec,j_vec,s_vec,nodes+n2,1);

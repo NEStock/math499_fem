@@ -1,7 +1,7 @@
 function [err,grad_err,max_err] = errors_exact_weighted_HL_k_0_p2(p,t,p2,t2,basis,u_h,n,u,grad_u_r,grad_u_z)                                                             
 % ERRORS_EXACT_WEIGHTED_HL_L_0_p2 - Calculate the errors of our solution u_h
 % compared to the exact solution u.
-%   Hodge Laplacian k = 0 case, P1
+%   Hodge Laplacian k = 0 case, P2
 %
 % Syntax:
 %     [err,grad_err,max_err] = errors_exact_weighted_HL_k_0_p2(p,e,t,u_h_km1,u_h_k)

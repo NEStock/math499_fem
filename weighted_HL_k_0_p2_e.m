@@ -35,11 +35,11 @@ function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf
 %    [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
 %    find_midpoints.m
-%    basis_functions_weighted_HL_p2.m
-%    create_b_HL_p2.m
+%    basis_functions_weighted_HL_k_0_p2.m
+%    create_b_HL_k_0_p2.m
 %    display_errors.m
-%    errors_exact_weighted_HL_p2.m
-%    stiffness_matrix_weighted_HL_p2.m
+%    errors_exact_weighted_HL_k_0_p2.m
+%    stiffness_matrix_weighted_HL_k_0_p2.m
 %
 % Author: Nicole Stock
 % Date: Fall 2020

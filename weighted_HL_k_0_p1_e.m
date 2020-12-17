@@ -31,10 +31,10 @@ function [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad
 %    [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
 % Dependencies:
 %    basis_functions_weighted_HL_k_0_p1.m
-%    create_b_HL_p1.m
+%    create_b_HL_k_0_p1.m
 %    display_errors.m
-%    errors_exact_weighted_HL_p1.m
-%    stiffness_matrix_weighted_HL_p1.m
+%    errors_exact_weighted_HL_k_0_p1.m
+%    stiffness_matrix_weighted_HL_k_0_p1.m
 %
 % Author: Nicole Stock
 % Date: Fall 2020
@@ -58,8 +58,6 @@ if mesh > 1
         it(i)=i;
     end
 
-%    [p2,t2] = find_midpoints(p,t);
-
     [basis,Qh] = solve(p,e,t,f,grad_f_r,grad_f_z,n);
     [err(1)] = errors_exact_weighted_HL_k_0_p1(p,t,basis,Qh,n,u,grad_u_r,grad_u_z);
 
@@ -67,9 +65,6 @@ if mesh > 1
         % Refine mesh to next level
         [p,e,t]=refinemesh(g,p,e,t,it,'regular');
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
-
-        % Find the midpoints for P2 nodal points
-        %[p2,t2] = find_midpoints(p,t);
 
         [basis,Qh] = solve(p,e,t,f,grad_f_r,grad_f_z,n);
         [err(i)] = errors_exact_weighted_HL_k_0_p1(p,t,basis,Qh,n,u,grad_u_r,grad_u_z);

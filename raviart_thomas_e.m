@@ -24,7 +24,7 @@ function [err] = raviart_thomas_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
 %    [err] = raviart_thomas_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 % Dependencies:
-%    find_edges.m
+%    find_edge_connectivity.m
 %    basis_functions_rt.m
 %    create_b_rt.m
 %    display_errors.m

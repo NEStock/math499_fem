@@ -57,11 +57,11 @@ for T = 1:triangles
         phi_i_r = @(r,z) bi + ai.*r;
         phi_i_z = @(r,z) ci + ai.*z;
     
-        integrand =@(r,z) (f_vec_r(r,z).*phi_i_r(r,z) ...
-            + f_vec_z(r,z).*phi_i_z(r,z));
+        integrand =@(r,z) f_vec_r(r,z).*phi_i_r(r,z) ...
+            + f_vec_z(r,z).*phi_i_z(r,z);
         
         b_i = Wx'*feval(integrand,X,Y)*Wy;
-        
+
         global_i = t_ed(i,T);
         
         i_vec(index) = global_i;

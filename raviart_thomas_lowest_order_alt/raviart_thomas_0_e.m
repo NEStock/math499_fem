@@ -1,10 +1,10 @@
-function [err] = weighted_nedelec_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
-%WEIGHTED_NEDELEC_E Weighted . 
+function [err] = raviart_thomas_0_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
+%RAVIART_THOMAS_0_E Raviart Thomas-1 Space Finite Element Method. 
 %   This program is set up to be given an exact solution.
-%   Lowest Order Nedelec Space
+%   Lowest Order Raviart Thomas Space
 %
 % Syntax:
-%     [err] = weighted_nedelec_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
+%     [err] = raviart_thomas_0_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 %
 % Inputs:
 %     f_vec_r - given vector r component
@@ -18,23 +18,24 @@ function [err] = weighted_nedelec_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_
 %     err - array of L2 errors for mesh levels corresponding to indices
 %
 % Usage Exampled:
+%    addpath ../data ../data/raviart_thomas/
 %    [u_vec_r,u_vec_z,f_vec_r,f_vec_z] = get_data_1();
 %    mesh = 8;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err] = weighted_nedelec_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
+%    [err] = raviart_thomas_0_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_z)
 % Dependencies:
 %    find_edge_connectivity.m
-%    basis_functions_weighted_nedelec.m
-%    create_b_nedelec.m
+%    basis_functions_rt1.m
+%    create_b_rt1.m
 %    display_errors.m
-%    errors_exact_weighted_nedelec.m
-%    stiffness_matrix_weighted_nedelec.m
+%    errors_exact_rt1.m
+%    stiffness_matrix_rt1.m
 %
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('data')
+addpath('../')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);
@@ -57,7 +58,7 @@ if mesh > 1
     end   
 
     [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z);
-    err(1) = errors_exact_weighted_nedelec(p,t,t_ed,basis,x,u_vec_r,u_vec_z);
+    err(1) = errors_exact_rt0(p,t,ed,t_ed,basis,x,u_vec_r,u_vec_z);
 
     for i = 2:mesh
         % Refine mesh to next level
@@ -68,7 +69,7 @@ if mesh > 1
         %pdemesh(p,e,t, 'NodeLabels','on', 'ElementLabels','on');
 
         [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z);
-        err(i) = errors_exact_weighted_nedelec(p,t,t_ed,basis,x,u_vec_r,u_vec_z);
+        err(i) = errors_exact_rt0(p,t,ed,t_ed,basis,x,u_vec_r,u_vec_z);
     end
     display_errors(err);
 
@@ -80,11 +81,13 @@ end
 
 % subfunction
 function [basis,x] = solve(p,e,t,ed,t_ed,f_vec_r,f_vec_z)
-    basis = basis_functions_weighted_nedelec(p,ed,t_ed);
-    S = stiffness_matrix_weighted_nedelec(p,t,ed,t_ed,basis);
-    b = create_b_nedelec(p,t,ed,t_ed,basis,f_vec_r,f_vec_z);
+    [basis, basis_div] = basis_functions_rt0(p,t,ed,t_ed);
+    S = stiffness_matrix_rt0(p,t,ed,t_ed,basis,basis_div);
+    b = create_b_rt0(p,t,ed,t_ed,basis,f_vec_r,f_vec_z);
     x = S\b;
-
+    
+    %disp(S)
+    %disp(b)
     %figure();
     %pdeplot(p,e,t, 'XYData',x, 'ZData', x, 'Mesh', 'on');
 end

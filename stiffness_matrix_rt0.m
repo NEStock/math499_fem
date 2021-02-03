@@ -14,9 +14,12 @@ function stiffness_matrix = stiffness_matrix_rt0(p,t,ed,t_ed,basis,basis_div)
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - an 3x2xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T.
+%     basis - a 3x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T.
+%     basis_div - an 3xNumTriangles matrix representing divergence of the
+%         basis functions for each node in each triangle. basis(i,:,T)  
+%         represents the basis function for the ith node in triangle T.
 %
 % Outputs:
 %     stiffness_matrix - stiffness matrix

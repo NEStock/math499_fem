@@ -29,8 +29,6 @@ function [err] = errors_exact_weighted_HL_k_0_p1(p,t,basis,u_h,n,u,grad_u_r,grad
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('data')
-
 [~,triangles] = size(t);
 
 integral = 0;

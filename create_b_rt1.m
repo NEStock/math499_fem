@@ -15,9 +15,9 @@ function b = create_b_rt1(p,t,ed,t_ed,basis,f_vec_r,f_vec_z)
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - an 8x2xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T. 
+%     basis - a 8x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T.
 %     f_vec_r - given vector r component
 %     f_vec_z - given vector z component
 %
@@ -38,10 +38,10 @@ for T = 1:triangles
     
     % get coordinates of triangle T (Tth col of t)
     coordinates = zeros(3,2);
-    for n = 1:3
-        node = t(n,T);
+    for N = 1:3
+        node = t(N,T);
         % get x,y coordinates of triangle
-        coordinates(n,:) = p(:,node);
+        coordinates(N,:) = p(:,node);
     end
     
     [X,Y,Wx,Wy] = triquad(7, coordinates);

@@ -13,9 +13,9 @@ function [err] = errors_exact_rt0(p,t,ed,t_ed,basis,x,u_vec_r,u_vec_z)
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - an 3x2xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T. 
+%     basis - a 3x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T. 
 %     x - approximated solution
 %     u_vec_r - exact solution vector r component
 %     u_vec_z - exact solution vector z component
@@ -51,8 +51,6 @@ for T = 1:triangles
     
     approx_z =@(r,z) x(e1).*basis{1,2,T}(r,z) + x(e2).*basis{2,2,T}(r,z) ...
         + x(e3).*basis{3,2,T}(r,z);
-
-    % u =@(r,z) [u_vec_r(r,z) ; u_vec_z(r,z)];
     
     % find L2 Error
     integrand =@(r,z) ((u_vec_r(r,z) - approx_r(r,z)).^2 ...

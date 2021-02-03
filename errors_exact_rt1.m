@@ -13,9 +13,9 @@ function [err] = errors_exact_rt1(p,t,ed,t_ed,basis,x,u_vec_r,u_vec_z)
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - an 8x2xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T. 
+%     basis - a 8x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T.
 %     x - approximated solution
 %     u_vec_r - exact solution vector r component
 %     u_vec_z - exact solution vector z component

@@ -17,9 +17,12 @@ function [basis, basis_div] = basis_functions_rt0(p,t,ed,t_ed)
 %         in triangle T.
 %
 % Outputs:
-%     basis - a 8xNumTriangles matrix representing piece-wise basis functions for each
-%         edge in each triangle. basis(i,:,T) represents the pieceiwise 
-%         basis function for the ith edge in triangle T.
+%     basis - a 3x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T.
+%     basis_div - an 3xNumTriangles matrix representing divergence of the
+%         basis functions for each node in each triangle. basis(i,:,T)  
+%         represents the basis function for the ith node in triangle T.
 %
 % Author: Nicole Stock
 % Date: Fall 2020
@@ -27,16 +30,6 @@ function [basis, basis_div] = basis_functions_rt0(p,t,ed,t_ed)
 [~,triangles] = size(t_ed);
 basis =  cell(3, 2, triangles);
 basis_div =  cell(3, triangles);
-
-% e-hat function
-% e1r =@(r,z) sqrt(2).*r;
-% e1z =@(r,z) sqrt(2).*z;
-% 
-% e2r =@(r,z) r - 1;
-% e2z =@(r,z) z;
-% 
-% e3r =@(r,z) r;
-% e3z =@(r,z) z - 1;
 
 % for each triangle (column in t_ed)
 for T = 1:triangles

@@ -14,9 +14,12 @@ function stiffness_matrix = stiffness_matrix_rt1(p,t,ed,t_ed,basis,basis_div)
 %     t_ed - a 3xNumTriangles matrix representing the which edges
 %         correspond to which triangles. t_ed(i,T) represents the ith edge
 %         in triangle T.
-%     basis - an 8x2xNumTriangles matrix representing piece-wise basis 
-%         functions for each node in each triangle. basis(i,:,T) represents 
-%         the pieceiwise basis function for the ith node in triangle T.
+%     basis - a 8x2xNumTriangles matrix representing basis functions for
+%         each node in each triangle. basis(i,:,T) represents the basis 
+%         function for the ith node in triangle T.
+%     basis_div - an 8xNumTriangles matrix representing divergence of the
+%         basis functions for each node in each triangle. basis(i,:,T)  
+%         represents the basis function for the ith node in triangle T.
 %
 % Outputs:
 %     stiffness_matrix - stiffness matrix
@@ -40,7 +43,7 @@ for T = 1:triangles
         % get x,y coordinates of triangle
         coordinates(N,:) = p(:,node);
     end
-        
+
     [R,Z,Wr,Wz] = triquad(7, coordinates);
     
     % integrate for each pair of basis functions in the triangle
@@ -50,10 +53,10 @@ for T = 1:triangles
                 + basis{i,2,T}(r,z).*basis{j,2,T}(r,z);
             
             div_dot =@(r,z) basis_div{i,T}(r,z).*basis_div{j,T}(r,z);
-                        
+
             integrand =@(r,z) (phi_dot(r,z) + div_dot(r,z));
             
-            Q = Wr'*feval(integrand,R,Z)*Wz;               
+            Q = Wr'*feval(integrand,R,Z)*Wz;
 
             if (i <= 3)
                 % edge basis functions set 1
@@ -82,7 +85,7 @@ for T = 1:triangles
                 % non-normal basis functions set 2 (5s)
                 global_j = edges*2 + triangles + T;
             end
-                        
+
             i_vec(index) = global_i;
             j_vec(index) = global_j;
             s_vec(index) = Q;

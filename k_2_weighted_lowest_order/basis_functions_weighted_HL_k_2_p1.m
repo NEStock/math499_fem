@@ -39,6 +39,10 @@ function [basis_nodes,basis_NP1_edges,basis_RT_edges,basis_triangles] = basis_fu
 %
 % Author: Nicole Stock
 % Date: Fall 2020
+
+addpath('../raviart_thomas_weighted_fourier_lowest_order/');
+addpath('../modified_nedelec_and_p1_weighted/');
+
   
 % basis_RT_edges(:,i,T) = basis for the ith node of triangle T 
 %       (fourier raviart thomas & P1)

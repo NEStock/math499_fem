@@ -30,6 +30,7 @@ function [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 %     err_s - array of L2 errors for mesh levels corresponding to indices
 %
 % Usage Exampled:
+%    addpath ../data ../data/weighted_HL_k_2/
 %    n = 1;
 %    [u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n);
 %    mesh = 7;
@@ -49,7 +50,7 @@ function [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('data')
+addpath('../')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

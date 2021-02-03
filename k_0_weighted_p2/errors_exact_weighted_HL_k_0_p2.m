@@ -33,8 +33,6 @@ function [err,grad_err,max_err] = errors_exact_weighted_HL_k_0_p2(p,t,p2,t2,basi
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('data')
-
 [~,triangles] = size(t);
 [~,nodes] = size(p);
 [~,mid_nodes] = size(p2);

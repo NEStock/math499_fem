@@ -28,6 +28,7 @@ function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_ve
 %     err_p - array of L2 errors for mesh levels corresponding to indices
 %
 % Usage Exampled:
+%    addpath ../data ../data/weighted_HL_k_3/
 %    n = 1;
 %    [z_vec_r,z_vec_th,z_vec_z,p_exact,f] = get_data_1(n);
 %    mesh = 7;
@@ -46,7 +47,8 @@ function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_ve
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('data')
+addpath('../')
+addpath('../raviart_thomas_weighted_fourier_lowest_order/')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

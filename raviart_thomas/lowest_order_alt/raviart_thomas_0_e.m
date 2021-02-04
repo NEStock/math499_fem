@@ -18,7 +18,7 @@ function [err] = raviart_thomas_0_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_
 %     err - array of L2 errors for mesh levels corresponding to indices
 %
 % Usage Exampled:
-%    addpath ../data ../data/raviart_thomas/
+%    addpath ../../data/ ../data/unweighted2D/
 %    [u_vec_r,u_vec_z,f_vec_r,f_vec_z] = get_data_1();
 %    mesh = 8;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
@@ -35,7 +35,7 @@ function [err] = raviart_thomas_0_e(f_vec_r,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('../')
+addpath('../../')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

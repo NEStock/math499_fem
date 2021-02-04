@@ -30,8 +30,6 @@ function [basis_nodes,basis_edges] = basis_functions_weighted_modified_nedelec_a
 %
 % Author: Nicole Stock
 % Date: Fall 2020
-addpath('../k_0_weighted_p1/')
-addpath('../nedelec_weighted_lowest_order/')
   
 % basis_nodes(:,i,T) = basis for the ith node of triangle T
 basis_nodes = basis_functions_weighted_HL_k_0_p1(p,t);

@@ -26,7 +26,7 @@ function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf
 %         indicies
 %
 % Usage Exampled:
-%    addpath ../data/ ../data/weighted_HL_k_0/
+%    addpath ../../data ../data/
 %    [f,grad_f_r,grad_f_z] = get_data1_f();
 %    [u,grad_u_r,grad_u_z] = get_data1_u();
 %    mesh = 8;
@@ -45,7 +45,7 @@ function [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('../')
+addpath('../../')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

@@ -22,9 +22,8 @@ function [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad
 %     err - array of L2 errors for mesh levels corresponding to indices
 %
 % Usage Exampled:
-%    addpath ../data ../data/weighted_HL_k_0/
-%    [f,grad_f_r,grad_f_z] = get_data1_f();
-%    [u,grad_u_r,grad_u_z] = get_data1_u();
+%    addpath ../../data ../data/
+%    [f,grad_f_r,grad_f_z,u,grad_u_r,grad_u_z] = get_data1();
 %    mesh = 8;
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
@@ -40,7 +39,7 @@ function [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad
 % Author: Nicole Stock
 % Date: Fall 2020
 
-addpath('../')
+addpath('../../')
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

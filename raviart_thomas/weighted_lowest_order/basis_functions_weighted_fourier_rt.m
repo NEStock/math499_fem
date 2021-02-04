@@ -26,7 +26,6 @@ function [basis_edges, basis_triangles] = basis_functions_weighted_fourier_rt(p,
 %
 % Author: Nicole Stock
 % Date: Fall 2020
-addpath('../raviart_thomas_lowest_order/')
 
 [~,m] = size(t_ed);
 basis_triangles = zeros(1,m);

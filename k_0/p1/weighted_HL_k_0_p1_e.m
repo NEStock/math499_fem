@@ -23,7 +23,7 @@ function [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad
 %
 % Usage Exampled:
 %    addpath ../../data ../data/
-%    [f,grad_f_r,grad_f_z,u,grad_u_r,grad_u_z] = get_data1();
+%    [f,grad_f_r,grad_f_z,u,grad_u_r,grad_u_z] = get_data7();
 %    mesh = 8;
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);

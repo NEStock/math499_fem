@@ -5,7 +5,6 @@
 * [Introduction](#introduction)
 * [Equations](#equations)
 * [Definitions](#definitions)
-* [Usage](#usage)
 * [Requirements](#requirements)
 
 ## Introduction

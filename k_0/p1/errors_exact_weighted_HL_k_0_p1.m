@@ -4,7 +4,7 @@ function [err] = errors_exact_weighted_HL_k_0_p1(p,t,basis,u_h,n,u,grad_u_r,grad
 %   Hodge Laplacian k = 0 case, P1
 %
 % Syntax:
-%     [err,grad_err,max_err] = errors_exact_weighted_HL_k_0_p1(p,e,t,u_h_km1,u_h_k)
+%     [err] = errors_exact_weighted_HL_k_0_p1(p,e,t,u_h_km1,u_h_k)
 %
 % Inputs:
 %     p - a 2xNumNodes matrix representing nodal coordinates.

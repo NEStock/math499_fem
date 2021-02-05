@@ -1,5 +1,18 @@
 # Finite Element Methods to Approximate Hodge Laplacian Problems on an Axisymmetric Domain
 
+## Table of Contents
+
+* [Introduction](#introduction)
+* [Equations](#equations)
+  * [k = 0](#k-=-0:-the-neumann-problem-for-the-axisymmetric-poisson-equation)
+  * [k = 1](#k-=-1:-the-axisymmetric-vector-laplacian-curl-curl-+-grad-div)
+  * [k = 2](#k-=-2:-the-axisymmetric-vector-laplacian-curl-curl-+-grad-div)
+  * [k = 3](#k-=-3:-the-dirichlet-problem-for-the-axisymmetric-poisson-equation)
+  * [Other Equations](#other-equations)
+* [Definitions](#definitions)
+* [Usage](#usage)
+* [Requirements](#requirements)
+
 ## Introduction
 
 This repository contains efficient finite element methods to approximate Hodge Laplacian problems on an axisymmetric domain.
@@ -18,13 +31,7 @@ Find <img src="https://render.githubusercontent.com/render/math?math=(\sigma , u
 
 With <img src="https://render.githubusercontent.com/render/math?math=%24k%20%3D%200%2C1%2C2%2C3%24">.
 
-Furthermore, let <img src="https://render.githubusercontent.com/render/math?math=d^k"> be defined in the following way:
-
-<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Balign*%7D%0A%20%20%20%20d%5E0%20v%20%26%3D%20%5Ctext%7Bgrad%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E1%20v%20%26%3D%20%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E2%20v%20%26%3D%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E3%20v%20%26%3D%200%2C%0A%5Cend%7Balign*%7D">
-
-and let <img src="https://render.githubusercontent.com/render/math?math=V^k"> be the Hilbert space associated with each,
-
-<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Balign*%7D%0A%20%20%20%20V%5E0%20%26%3D%20H_r(%5Ctext%7Bgrad%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E1%20%26%3D%20H_r(%5Ctext%7Bcurl%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E2%20%26%3D%20H_r(%5Ctext%7Bdiv%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E3%20%26%3D%20L%5E2_r(%5COmega).%0A%5Cend%7Balign*%7D">
+See the [next](#definitions) section for more details.
 
 Thus, the four equations corresponding with <img src="https://render.githubusercontent.com/render/math?math=%24k%20%3D%200%2C1%2C2%2C3%24"> are as follows:
 
@@ -32,18 +39,76 @@ Thus, the four equations corresponding with <img src="https://render.githubuserc
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20%5Ctext%7Bdiv%7D%5E%7Bn*%7D_%7Brz%7D%20%5Ctext%7Bgrad%7D%5En_%7Brz%7D%20u%20%26%20%3D%20f%20%26%26%5Ctext%7B%20in%20%7D%20%5COmega%2C%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Ctext%7Bgrad%7D%5En_%7Brz%7D%20u%20%5Ccdot%20n%20%26%20%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Baligned%7D">
 
+See [here](k_0/README.md) for more
+
 ### k = 1: The Axisymmetric Vector Laplacian curl curl + grad div
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%5Ctext%7Bgrad%7D%5En_%7Brz%7D%20%5Ctext%7Bdiv%7D%5E%7Bn*%7D_%7Brz%7D%20%2B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Ctext%7Bcurl%7D%5E%7Bn*%7D_%7Brz%7D%20%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u%20%26%3D%20f%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u)_%7Brz%7D%20%5Ccdot%20t%20%26%3D%200%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u)_%7B%5Ctheta%7D%20%26%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20u_%7Brz%7D%20%5Ccdot%20n%20%26%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Baligned%7D">
+
+See [here](k_1/README.md) for more
 
 ### k = 2: The Axisymmetric Vector Laplacian curl curl + grad div
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20%5Ctext%7Bcurl%7D%5E%7Bn*%7D_%7Brz%7D%20u%20-%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20u%20%26%3D%20f%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20u_%7Brz%7D%20%5Ccdot%20t%20%26%3D%200%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20u_%7B%5Ctheta%7D%20%26%3D%200%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20u%20%26%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Baligned%7D">
 
+See [here](k_2/README.md) for more
+
 ### k = 3: The Dirichlet Problem for the Axisymmetric Poisson Equation
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20u%20%26%3D%20f%20%26%26%5Ctext%7B%20in%20%7D%20%5COmega%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20u%20%26%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Baligned%7D">
 
+See [here](k_3/README.md) for more
+
+
+### Other Equations
+
+#### Weighted Lowest Order Nedelec Space
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%5Coverrightarrow%7B%5Ctext%7Bcurl%7D%7D_%7Brz%7D%20%5Ctext%7Bcurl%7D_%7Brz%7D%20u%20%20%2B%20u%20%26%20%3D%20F%20%26%26%5Ctext%7B%20in%20%7D%20%5COmega%2C%20%5C%5C%0A%20%20%20%20%5Ctext%7Bcurl%7D_%7Brz%7D%20u%20%26%20%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%5Cend%7Baligned%7D">
+
+#### Weighted Fourier Lowest Order Nedelec and P1 Space (Bh)
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%5Ctext%7Bcurl%7D%5E%7Bn*%7D_%7Brz%7D%20%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u%20%20%2B%20u%20%26%20%3D%20F%20%26%26%5Ctext%7B%20in%20%7D%20%5COmega%2C%20%5C%5C%0A%20%20%20%20(%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u)_%7Brz%7D%20%5Ccdot%20t%20%20%26%20%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1%2C%5C%5C%0A%20%20%20%20(%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20u)_%7B%5Ctheta%7D%20%20%26%20%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%5Cend%7Baligned%7D">
+
+#### Lowest Order Raviart Thomas Space
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20-%20%5Ctext%7Bgrad%7D%20(%5Ctext%7Bdiv%7D%20u)%20%2B%20u%20%26%3D%20F%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%20u%20%26%3D%200%20%26%26%5Ctext%7Bon%20%7D%20%5Cpartial%5COmega.%0A%20%20%20%20%5Cend%7Baligned%7D">
+
+#### Weighted Fourier Lowest Order Raviart Thomas Space (Ch)
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20-%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20u%20%2B%20u%20%26%3D%20F%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20u%20%26%3D%200%20%26%26%5Ctext%7Bon%20%7D%20%5Cpartial%5COmega.%0A%5Cend%7Baligned%7D%0A">
+
+## Definitions
+
+<!-- d^k-->
+We let <img src="https://render.githubusercontent.com/render/math?math=d^k"> be defined in the following way:
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Balign*%7D%0A%20%20%20%20d%5E0%20v%20%26%3D%20%5Ctext%7Bgrad%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E1%20v%20%26%3D%20%5Ctext%7Bcurl%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E2%20v%20%26%3D%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20v%2C%5C%5C%0A%20%20%20%20d%5E3%20v%20%26%3D%200%2C%0A%5Cend%7Balign*%7D">
+
+<!-- V^k-->
+and let <img src="https://render.githubusercontent.com/render/math?math=V^k"> be the Hilbert space associated with each,
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Balign*%7D%0A%20%20%20%20V%5E0%20%26%3D%20H_r(%5Ctext%7Bgrad%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E1%20%26%3D%20H_r(%5Ctext%7Bcurl%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E2%20%26%3D%20H_r(%5Ctext%7Bdiv%7D%5En%2C%20%5COmega)%2C%5C%5C%0A%20%20%20%20V%5E3%20%26%3D%20L%5E2_r(%5COmega).%0A%5Cend%7Balign*%7D">
+
+Furthermore, the grad, curl, and div formulas for the n-th Fourier mode are as follows:
+<!-- grad^n_rz-->
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%5Ctext%7Bgrad%7D%5E%7Bn%7D_%7Brz%7D%20v%20%26%3D%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_r%20v%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%5Cfrac%7Bn%7D%7Br%7D%20v%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bcurl%7D%5E%7Bn%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-(%20%5Cfrac%7Bn%7D%7Br%7D%20v_z%20-%20%5Cpartial_z%20v_%7B%5Ctheta%7D%20)%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v_r%20-%20%5Cpartial_r%20v_z%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7Bn%20v_r%20%2B%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_r%20v_%7B%5Ctheta%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%5E%7Bn%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%20%5Cpartial_r%20v_r%20%2B%20%5Cfrac%7Bv_r%20-%20n%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_z%20v_z%20.%0A%20%20%20%20%5Cend%7Baligned%7D">
+
+<!-- grad^n*_rz-->
+
+<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20v%20%26%3D%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_r%20v%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7Bn%7D%7Br%7D%20v%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bcurl%7D%5E%7Bn*%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7Bn%7D%7Br%7D%20v_z%20-%20%5Cpartial_z%20v_%7B%5Ctheta%7D%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v_r%20-%20%5Cpartial_r%20v_z%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7B-n%20v_r%20%2B%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_r%20v_%7B%5Ctheta%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%5E%7Bn*%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%20%5Cpartial_r%20v_r%20%2B%20%5Cfrac%7Bv_r%20%2B%20n%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_z%20v_z%20.%0A%20%20%20%20%5Cend%7Baligned%7D">
+
+TODO: For more information, see thesis
+
+## Usage
+
+TODO
+
+## Requirements
+
+* MATLAB
 
 ## James Madison University Honors Capstone Project
 Author: Nicole Stock
+
+Faculty Research Advisor: Dr. Minah Oh

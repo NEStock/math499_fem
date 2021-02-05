@@ -9,13 +9,28 @@ Find <img src="https://render.githubusercontent.com/render/math?math=%24%20(%5Cs
 
 ## Usage
 
-The program ...
+### Syntax
+```
+[err] = weighted_HL_k_3_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_vec_z,p_exact,n)
+```
+
+### Inputs 
+`f` - given function
+`gd,sf,ns` - outputs of pdepoly specifying domain
+`mesh` - max mesh level
+`z_vec_r` - exact solution z vector r component
+`z_vec_th` - exact solution z vector theta component
+`z_vec_z` - exact solution z vector z component
+`p_vec_r` - exact solution p vector r component
+`p_vec_th` - exact solution p vector theta component
+`p_vec_z` - exact solution p vector z component
+
+### Outputs
+`err_z` - array of L2 errors for mesh levels corresponding to indices
+`err_p` - array of L2 errors for mesh levels corresponding to indices
 
 
--  TODO: explain what z & p are
-
-
-## Usage Example
+## Example
 ```
 % add path for get_data_1() function
 addpath ../data/
@@ -30,3 +45,5 @@ pdepoly([0,1,1,0], [0,0,1,1]);
 % run the program
 [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_vec_z,p_exact,n)
 ```
+
+Return to [main](../README.md) page

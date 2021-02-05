@@ -12,15 +12,33 @@ Note: <img src="https://render.githubusercontent.com/render/math?math=%24A_h%20%
 
 ## Usage
 
-The program ...
+
+### Syntax
+```
+[err] = weighted_HL_k_0_p1_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z
+```
+
+```
+[err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+```
 
 ### Inputs
+`f` - given function  
+`grad_f_r` - gradient(f) with respect to r  
+`grad_f_z` - gradient(f) with respect to z  
+`gd,sf,ns` - outputs of pdepoly specifying domain  
+`mesh` - max mesh level  
+`n` - n-th Fourier mode  
+`u` - exact solution function  
+`grad_u_r` - gradient(u) with respect to r  
+`grad_u_z` - gradient(u) with respect to z  
 
 ### Outputs
-TODO: copy & paste def of inputs and outputs here
+`err` - array of L2 errors for mesh levels corresponding to indices  
+`grad_err` - array of L2 gradient errors for mesh levels corresponding to indices  
+`max_err` - array of max errors for mesh levels corresponding to indicies  
 
-
-## Usage Example
+## Example
 ```
 % add path for get_data_7() function
 addpath ../data/
@@ -38,3 +56,4 @@ pdepoly([0,1,1,0], [0,0,1,1]);
 [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z);
 ```
 
+Return to [main](../README.md) page

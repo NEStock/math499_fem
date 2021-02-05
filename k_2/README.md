@@ -10,9 +10,33 @@ Find <img src="https://render.githubusercontent.com/render/math?math=%24(%5Csigm
 
 ## Usage
 
-The program ...
 
-## Usage Example
+### Syntax
+```
+[err] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n)
+```
+
+### Input
+
+`f_vec_r` - given function r component  
+`f_vec_th` - given function theta component  
+`f_vec_z` - given function z component  
+`gd,sf,ns` - outputs of pdepoly specifying domain  
+`mesh` - max mesh level  
+`u_vec_r` - exact solution z vector r component  
+`u_vec_th` - exact solution z vector theta component  
+`u_vec_z` - exact solution z vector z component  
+`s_vec_r` - exact solution s vector r component  
+`s_vec_r` - exact solution s vector theta component  
+`s_vec_z` - exact solution s vector z component  
+
+### Outputs
+
+`err_u` - array of L2 errors for mesh levels corresponding to indices  
+`err_s` - array of L2 errors for mesh levels corresponding to indices  
+
+
+## Example
 ```
 % add path for get_data_1() function
 addpath ../data/
@@ -27,3 +51,5 @@ pdepoly([0,1,1,0], [0,0,1,1]);
 % run the program
 [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n);
 ```
+
+Return to [main](../README.md) page

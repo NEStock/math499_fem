@@ -1,9 +1,9 @@
 function [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n)
-%WEIGHTED_HL_K_1_E Hodge Laplacian k = 1 P1 Finite Element Method.
+%WEIGHTED_HL_K_2_E Hodge Laplacian k = 2 lowest order Finite Element Method.
 %   This program is set up to be given an exact solution.
-%   Hodge Laplacian k = 2 case, P1
-%   {zeta_j}j=1->N+Ne is the basis for Bh
-%   {psi_i}i=1->Ne+Nt is the basis for Ch
+%   Hodge Laplacian k = 2 case, lowest order
+%   {zeta_j}j=1->N+Ne is the basis for Bh0
+%   {psi_i}i=1->Ne+Nt is the basis for Ch0
 %   (Bh is the weighted fourier modified Nedelec and P1 space)
 %   (Ch is the weighted fourier Raviart Thomas space)
 %   Solve for (s,u) in (Bh x Ch) s.t.

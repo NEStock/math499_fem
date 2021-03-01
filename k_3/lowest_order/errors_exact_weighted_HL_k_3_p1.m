@@ -93,9 +93,7 @@ for T = 1:triangles
     % find L2 Error for p
     integrand =@(r,z) ((p_exact(r,z) - p_h(T)).^2).*r;
     
-    integral_p = integral_p + Wx'*feval(integrand,X,Y)*Wy;    
-
-    
+    integral_p = integral_p + Wx'*feval(integrand,X,Y)*Wy;
 end
 
 err_z = sqrt(integral_z);

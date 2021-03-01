@@ -54,7 +54,7 @@ for T = 1:triangles
         
     [R,Z,Wr,Wz] = triquad(7, coordinates);
     
-    % integrate for each pair of edges + 1 in the triangle
+    % integrate for each pair of basis functions in the triangle
     for i = 1:6
         for j = i:6
             if i <=3

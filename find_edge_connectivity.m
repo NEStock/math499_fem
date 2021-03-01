@@ -1,5 +1,5 @@
 function [t_ed] = find_edge_connectivity(t,ed,mesh)
-% FIND_EDGES - Find the edges in each triangulation in the mesh
+% FIND_EDGE_CONNECTIVITY - Find the edges in each triangulation in the mesh
 %
 % Syntax:
 %     [ed, t_ed] = find_edges(t)
@@ -20,7 +20,9 @@ function [t_ed] = find_edge_connectivity(t,ed,mesh)
 % Date: Fall 2020
 
 if exist('mesh','var')
-	% mesh is given
+	% if mesh is given
+    % determine if we have saved a matrix for the given mesh & domain to
+    % save computational time
     if mesh == 6 && isfile('edge_resources/t_ed_6.mat')
         t_ed_6 = load('edge_resources/t_ed_6.mat');
         t_ed = t_ed_6.t_ed_6;

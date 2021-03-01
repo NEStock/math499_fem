@@ -1,6 +1,6 @@
 function mass_matrix = mass_matrix_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
 % MASS_MATRIX_WEIGHTED_HL_K_2_P1 - Create mass matrix
-%   Hodge Laplacian k = 2 case, P1
+%   Hodge Laplacian k = 2 case, lowest order
 %   (zeta_i, zeta_j)_r where {zeta_k}k=1->(N+Ne) is the basis for Bh
 %   (Bh is the weighted fourier modified Nedelec and P1 space)
 %

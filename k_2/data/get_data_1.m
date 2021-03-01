@@ -10,6 +10,8 @@ function [u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,f_vec_r,f_vec_th,f_v
 %   f = [ 3n^2 - (3n^2)/r + 6n - (4n)/r - 9
 %         -3n^2 + (2n^2)/r - 6n + (6n)/r + 9
 %         0      ]
+% Author: Nicole Stock
+% Date: Fall 2020
 
 s_vec_r = @(r,z) 3.*r.*(r-1); % 3.*r.^2 - 3.*r
 s_vec_th = @(r,z) -3.*r.^2 + 2.*r;

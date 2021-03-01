@@ -29,7 +29,7 @@ function F = create_F_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_RT_edges,basis_triang
 %     f_vec_z - given function z component
 %
 % Outputs:
-%     S - S matrix used to solve system of equations to approximate
+%     F - F matrix used to solve system of equations to approximate
 %         solution
 %
 % Author: Nicole Stock

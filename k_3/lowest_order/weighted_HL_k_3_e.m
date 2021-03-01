@@ -1,9 +1,9 @@
 function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_vec_z,p_exact,n)
-%WEIGHTED_HL_K_3_E Hodge Laplacian k = 3 P1 Finite Element Method.
+%WEIGHTED_HL_K_3_E Hodge Laplacian k = 3 lowest order Finite Element Method.
 %   This program is set up to be given an exact solution.
-%   Hodge Laplacian k = 3 case, P1
-%   {psi_i}i=1->Ne+Nt is the basis for Ch
-%   {chi_j}j=1->Nt is the basis for Dh
+%   Hodge Laplacian k = 3 case, lowest order
+%   {psi_i}i=1->Ne+Nt is the basis for Ch0
+%   {chi_j}j=1->Nt is the basis for Dh0
 %   (Ch is the weighted fourier Raviart Thomas space)
 %   (Dh is the piecewise constant space)
 %   Solve for (z,p) in (Ch x Dh) s.t.

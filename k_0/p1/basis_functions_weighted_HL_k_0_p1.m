@@ -14,7 +14,7 @@ function basis = basis_functions_weighted_HL_k_0_p1(p,t)
 %
 % Outputs:
 %     basis - a matrix representing piece-wise basis functions for each node
-%         in each triangle. basis(i,:,T) represents the pieceiwise basis 
+%         in each triangle. basis(:,i,T) represents the pieceiwise basis 
 %         function for the ith node in triangle T. 
 %
 % Author: Nicole Stock

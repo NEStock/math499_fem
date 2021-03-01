@@ -1,9 +1,9 @@
 function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n)
-%WEIGHTED_HL_K_1_E Hodge Laplacian k = 1 P1 Finite Element Method.
+%WEIGHTED_HL_K_1_E Hodge Laplacian k = 1 lowest order Finite Element Method.
 %   This program is set up to be given an exact solution.
-%   Hodge Laplacian k = 1 case, P1
-%   {phi_i}i=1->N is the basis for Ah
-%   {zeta_j}j=1->N+Ne is the basis for Bh
+%   Hodge Laplacian k = 1 case, lowest order
+%   {phi_i}i=1->N is the basis for Ah0
+%   {zeta_j}j=1->N+Ne is the basis for Bh0
 %   (Ah is the weighted P1 space)
 %   (Bh is the weighted fourier modified Nedelec and P1 space)
 %   Solve for (s,u) in (Ah x Bh) s.t.
@@ -14,6 +14,8 @@ function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 %
 % Syntax:
 %     [err] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n)
+%
+% Inputs:
 %     f_vec_r - given function r component
 %     f_vec_th - given function theta component
 %     f_vec_z - given function z component
@@ -31,11 +33,11 @@ function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 % Usage Exampled:
 %    addpath ../../data ../data/
 %    n = 1;
-%    [u_vec_r,u_vec_th,u_vec_z,s,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n)
+%    [u_vec_r,u_vec_th,u_vec_z,s,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n);
 %    mesh = 7;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n)
+%    [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s,n);
 % Dependencies:
 %    find_edge_connectivity.m
 %    basis_functions_weighted_modified_nedelec_and_p1.m
@@ -52,6 +54,7 @@ function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 addpath('../../');
 addpath('../../modified_weighted_nedelec_pk/p1/');
 addpath('../../nedelec/weighted_lowest_order/')
+addpath('../../k_0/p1/');
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

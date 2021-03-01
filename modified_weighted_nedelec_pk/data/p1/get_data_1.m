@@ -6,6 +6,8 @@ function [u_vec_r,u_vec_th,u_vec_z,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n)
 %   F = [ n(r-1) + u_r   ]
 %       [ -2r + 1 + u_th ]
 %       [ u_z            ]
+% Author: Nicole Stock
+% Date: Fall 2020
 
 u_vec_r = @(r,z) z - (1./n).*((1./3).*r.^3 - (1./2).*r.^2);
 u_vec_th = @(r,z) (-1).*n.*z + (1./3).*r.^3 - (1./2).*r.^2;

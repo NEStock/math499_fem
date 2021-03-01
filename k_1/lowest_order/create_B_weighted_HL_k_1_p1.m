@@ -1,6 +1,6 @@
 function B = create_B_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
 % CREATE_B_WEIGHTED_HL_K_1_P1 - Create B matrix
-%   Hodge Laplacian k = 1 case, P1
+%   Hodge Laplacian k = 1 case, lowest order
 %   (grad_rz^n(phi_i), zeta_j)_r where {phi_k}k=1->N is the basis for Ah
 %     and {zeta_l}l=1->N+Ne is the basis for Bh
 %   (Ah is the weighted P1 space)
@@ -55,7 +55,7 @@ for T = 1:triangles
         
     [R,Z,Wr,Wz] = triquad(7, coordinates);
     
-    % integrate for each pair of edges + 1 in the triangle
+    % integrate for each pair of basis functions in the triangle
     for i = 1:3
         for j = 1:6
             I = basis_nodes(:,i,T);

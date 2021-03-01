@@ -4,6 +4,8 @@ function [f,grad_f_r,grad_f_z,u,grad_u_r,grad_u_z] = get_data2()
 %   data2
 %   u = r^3 - (3/2)r^2
 %   f = -8r + 9/2
+% Author: Nicole Stock
+% Date: Fall 2020
 
 f = @(r,z) -8.*r + (9./2);
 grad_f_r =@(r,z) -8;

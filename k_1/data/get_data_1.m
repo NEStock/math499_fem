@@ -8,6 +8,9 @@ function [u_vec_r,u_vec_th,u_vec_z,s,f_vec_r,f_vec_th,f_vec_z] = get_data_1(n)
 %   f = [ -15r^2 + 8r + n^2r^2 - n^2r
 %         2nr^2 - 2nr
 %         0                           ]
+% Author: Nicole Stock
+% Date: Fall 2020
+
 u_vec_r = @(r,z) r.^4 - r.^3;
 u_vec_th = @(r,z) 0;
 u_vec_z = @(r,z) 0;

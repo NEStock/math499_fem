@@ -1,6 +1,6 @@
 function S = create_S_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_RT_edges,basis_triangles)
 % CREATE_S_WEIGHTED_HL_K_2_P1 - Create S matrix
-%   Hodge Laplacian k = 2 case, P1
+%   Hodge Laplacian k = 2 case, lowest order
 %   (div_rz^n(psi_i), div_rz^n(psi_j))_r where {psi_j}j=1->Ne+Nt is the basis for Ch
 %   (Ch is the weighted fourier Raviart Thomas space)
 %
@@ -26,7 +26,7 @@ function S = create_S_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_RT_edges,basis_triang
 %         function for the Tth triangle.
 %
 % Outputs:
-%     B - B matrix used to solve system of equations to approximate
+%     S - S matrix used to solve system of equations to approximate
 %         solution
 %
 % Author: Nicole Stock

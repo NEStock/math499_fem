@@ -1,4 +1,4 @@
-# Finite Element Methods to Approximate Hodge Laplacian Problems on an Axisymmetric Domain
+# Lowest Order Fourier Finite Element Methods to Approximate Hodge Laplacian Problems on Axisymmetric Domains
 
 ## Table of Contents
 
@@ -9,11 +9,11 @@
 
 ## Introduction
 
-This repository contains efficient finite element methods to approximate Hodge Laplacian problems on an axisymmetric domain.
+This repository contains efficient lowest order Fourier finite element methods to approximate the solution of Hodge Laplacian problems on axisymmetric domains.
 
-An axisymmetric problem is one defined on a three-dimensional domain that is symmetric with respect to an axis. By using cylindrical coordinates and a Fourier series decomposition with respect to <img src="https://render.githubusercontent.com/render/math?math=\theta"> , the three-dimensional problem can be reduced to a sequence of two-dimensional problems, which are easier to solve and significantly reduces computation time. The two-dimensional problems are posed in weighted function spaces with weight r.
+In [[1]](##references), a new family of Fourier finite element spaces was constructed by using the lowest order finite element methods. These spaces were used to discretize Hodge Laplacian problems in [[2]](##references). This repository contains open-source programs for each of the four problems described as well as some additional programs for the spaces used to construct the new family of spaces.
 
-The finite element method (FEM) is a numerical technique for approximating solutions to complex differential equations. A large portion of differential equations cannot be solved using analytical techqniques; rather thay must be approximated. The FEM is an ideal candidate for approximating solutions due to its well developed theory, adaptability, and accuracy.
+This repository is written in conjuction with [this repository](https://github.com/minahoh/AxiHodgeLapOrder1FEM), which contains the higher order Fourier finite element methods for the same problems.
 
 ## Equations
 <!-- https://jsfiddle.net/8ndx694g/ Converts LaTex equations to rendered URLs -->
@@ -27,7 +27,7 @@ With <img src="https://render.githubusercontent.com/render/math?math=%24k%20%3D%
 
 See the [next](#definitions) section for more details.
 
-Thus, the four equations corresponding with <img src="https://render.githubusercontent.com/render/math?math=%24k%20%3D%200%2C1%2C2%2C3%24"> are as follows:
+The four equations corresponding with <img src="https://render.githubusercontent.com/render/math?math=%24k%20%3D%200%2C1%2C2%2C3%24"> are as follows:
 
 ### k = 0: The Neumann Problem for the Axisymmetric Poisson Equation
 
@@ -92,13 +92,15 @@ Furthermore, the grad, curl, and div formulas for the n-th Fourier mode are as f
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20v%20%26%3D%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_r%20v%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7Bn%7D%7Br%7D%20v%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bcurl%7D%5E%7Bn*%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7Bn%7D%7Br%7D%20v_z%20-%20%5Cpartial_z%20v_%7B%5Ctheta%7D%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cpartial_z%20v_r%20-%20%5Cpartial_r%20v_z%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5Cfrac%7B-n%20v_r%20%2B%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_r%20v_%7B%5Ctheta%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%2C%5C%5C%0A%20%20%20%20%20%20%20%20%5Ctext%7Bdiv%7D%5E%7Bn*%7D_%7Brz%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cleft%5B%20%7B%5Cbegin%7Barray%7D%7Bcc%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_r%20%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_%7B%5Ctheta%7D%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v_z%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Barray%7D%20%7D%20%5Cright%5D%20%26%3D%20%5Cpartial_r%20v_r%20%2B%20%5Cfrac%7Bv_r%20%2B%20n%20v_%7B%5Ctheta%7D%7D%7Br%7D%20%2B%20%5Cpartial_z%20v_z%20.%0A%20%20%20%20%5Cend%7Baligned%7D">
 
-TODO: For more information, see thesis
-
 ## Requirements
 
 * MATLAB
 
-## James Madison University Honors Capstone Project
-Author: Nicole Stock
+## References
 
+[1] Minah Oh, de Rham complexes arising from Fourier finite element methods in axisymmetric domains, Computers & Mathematics with Applications, Volume 70, Issue 8, 2015  
+[2] The Hodge Laplacian on axisymmetric domains and its discretization, IMA Journal of Numerical Analysis, 2020
+
+## James Madison University Honors Capstone Project
+Author: Nicole Stock  
 Faculty Research Advisor: Dr. Minah Oh

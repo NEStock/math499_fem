@@ -2,11 +2,6 @@
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20%5Ctext%7Bgrad%7D%5E%7Bn*%7D_%7Brz%7D%20u%20%26%3D%20f%20%26%26%5Ctext%7B%20in%20%7D%20%5COmega%2C%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20u%20%26%3D%200%20%26%26%5Ctext%7B%20on%20%7D%20%5CGamma_1.%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Cend%7Baligned%7D">
 
-Re-writen in its weak formulation, 
-
-Find <img src="https://render.githubusercontent.com/render/math?math=%24%20(%5Csigma_h%2C%20u_h)%20%5Cin%20C_h%20%5Ctext%7Bx%7D%20D_h%24"> such that
-<img src="https://render.githubusercontent.com/render/math?math=%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20%20(%5Csigma_h%2C%20%5Ctau_h)_r%20-%20(u_h%2C%20%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20%5Ctau_h)_r%20%26%3D%200%20%5C%5C%0A%20%20%20%20%20%20%20%20(%5Ctext%7Bdiv%7D%5En_%7Brz%7D%20%5Csigma_h%2C%20v_h)_r%20%26%3D%20(F%2C%20v_h)_r%20%5C%5C%0A%20%20%20%20%20%20%20%20%26%20%5Cforall%20v_h%20%5Cin%20D_h%2C%20%5Cforall%20%5Ctau_h%20%5Cin%20C_h%0A%5Cend%7Baligned%7D">
-
 ## Usage
 
 ### Syntax

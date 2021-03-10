@@ -36,6 +36,7 @@ function [err] = weighted_fourier_raviart_thomas_e(f_vec_r,f_vec_th,f_vec_z,gd,s
 % Date: Fall 2020
 
 addpath('../')
+addpath('../lowest_order/');
 
 model=createpde(1);
 g=decsg(gd,sf,ns);

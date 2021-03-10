@@ -36,7 +36,7 @@ function [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 %    mesh = 7;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n)
+%    [err_u,err_s] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n);
 % Dependencies:
 %    find_edge_connectivity.m
 %    basis_functions_weighted_HL_k_2_p1.m

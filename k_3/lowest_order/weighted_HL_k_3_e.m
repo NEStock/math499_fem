@@ -22,6 +22,7 @@ function [err_z,err_p] = weighted_HL_k_3_e(f,gd,sf,ns,mesh,z_vec_r,z_vec_th,z_ve
 %     p_vec_r - exact solution p vector r component
 %     p_vec_th - exact solution p vector theta component
 %     p_vec_z - exact solution p vector z component
+%     n - Fourier mode
 %
 % Outputs:
 %     err_z - array of L2 errors for mesh levels corresponding to indices
@@ -108,7 +109,4 @@ function [basis_edges,basis_triangles,z_h,p_h] = solve(p,e,t,ed,t_ed,f,n)
     MB = (M\B);
     p_h = (Bt*MB)\F;
     z_h = MB*p_h;
-
-    %figure();
-    %pdeplot(p,e,t, 'XYData',x, 'ZData', x, 'Mesh', 'on');
 end

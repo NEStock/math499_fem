@@ -15,8 +15,7 @@ function mass_matrix = mass_matrix_weighted_HL_k_1_p1(p,t,basis_nodes,n)
 %     basis_nodes - a matrix representing piece-wise basis functions for
 %         each node in each triangle. basis(i,:,T) represents the
 %         pieceiwise basis function for the ith node in triangle T.
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
+%     n - Fourier mode
 %
 % Outputs:
 %     mass_matrix - mass matrix used to solve system of equations to

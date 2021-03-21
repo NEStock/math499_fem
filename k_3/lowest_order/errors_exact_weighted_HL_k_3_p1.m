@@ -28,8 +28,7 @@ function [err_z,err_p] = errors_exact_weighted_HL_k_3_p1(p,t,t_ed,basis_edges,ba
 %     z_vec_z - exact solution z vector z component
 %     p_h - approximated solution of p
 %     p_exact - exact solution p
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
+%     n - Fourier mode
 %
 % Outputs:
 %    err_z - L2 error for z approximation

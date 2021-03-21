@@ -25,6 +25,7 @@ function [err_u,err_s] = weighted_HL_k_1_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mes
 %     u_vec_th - exact solution z vector theta component
 %     u_vec_z - exact solution z vector z component
 %     s - exact solution s
+%     n - Fourier mode
 %
 % Outputs:
 %     err_u - array of L2 errors for mesh levels corresponding to indices

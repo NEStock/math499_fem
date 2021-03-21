@@ -27,6 +27,7 @@ function F = create_F_weighted_HL_k_2_p1(p,t,ed,t_ed,basis_RT_edges,basis_triang
 %     f_vec_r - given function r component
 %     f_vec_th - given function theta component
 %     f_vec_z - given function z component
+%     n - Fourier mode
 %
 % Outputs:
 %     F - F matrix used to solve system of equations to approximate

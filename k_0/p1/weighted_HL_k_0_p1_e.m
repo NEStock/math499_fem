@@ -28,7 +28,7 @@ function [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad
 %    n = 1;
 %    pdepoly([0,1,1,0], [0,0,1,1]);
 %       (OR) [gd,sf,ns] = get_gd_sf_ns([0,1,1,0],[0,0,1,1]);
-%    [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+%    [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z);
 % Dependencies:
 %    basis_functions_weighted_HL_k_0_p1.m
 %    create_b_HL_k_0_p1.m

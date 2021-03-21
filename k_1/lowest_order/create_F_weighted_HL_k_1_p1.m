@@ -26,8 +26,7 @@ function F = create_F_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,f_r
 %     f_vec_r - given function r component
 %     f_vec_th - given function theta component
 %     f_vec_z - given function z component
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
+%     n - Fourier mode
 %
 % Outputs:
 %     F - F matrix used to solve system of equations to approximate

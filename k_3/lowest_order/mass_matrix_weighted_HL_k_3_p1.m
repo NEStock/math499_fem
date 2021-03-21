@@ -23,8 +23,7 @@ function mass_matrix = mass_matrix_weighted_HL_k_3_p1(p,t,ed,t_ed,basis_edges,ba
 %     basis_triangles - a vector representing piece-wise basis functions
 %         for edge triangle. basis(1,T) represents the piecewise basis
 %         function for the Tth triangle.
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
+%     n - Fourier mode
 %
 % Outputs:
 %     mass_matrix - mass matrix used to solve system of equations to

@@ -25,8 +25,7 @@ function B = create_B_weighted_HL_k_1_p1(p,t,ed,t_ed,basis_nodes,basis_edges,n)
 %     basis_edges - a matrix representing piece-wise basis functions for 
 %         each edge in each triangle. basis(i,:,T) represents the 
 %         pieceiwise basis function for the ith edge in triangle T.
-%     n - Hodge Laplacian on Axisymmetrix Domain and its discretization
-%     weight
+%     n - Fourier mode
 %
 % Outputs:
 %     B - B matrix used to solve system of equations to approximate

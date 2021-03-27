@@ -6,8 +6,13 @@
 
 
 ### Syntax
+To compare a known exact solution u and to its approximated solution:
 ```
 [err] = weighted_HL_k_2_e(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,u_vec_r,u_vec_th,u_vec_z,s_vec_r,s_vec_th,s_vec_z,n)
+```
+To find the approximated solution to an unknown solution:
+```
+[basis_nodes,basis_NP1_edges,basis_RT_edges,basis_triangles,u_h,s_h] = weighted_HL_k_2(f_vec_r,f_vec_th,f_vec_z,gd,sf,ns,mesh,n)
 ```
 
 ### Input
@@ -25,10 +30,14 @@
 `s_vec_z` - exact solution s vector z component  
 
 ### Outputs
-
 `err_u` - array of L2 errors for mesh levels corresponding to indices  
 `err_s` - array of L2 errors for mesh levels corresponding to indices  
-
+`basis_nodes` - a matrix representing piece-wise basis functions for each node in each triangle. basis(i,:,T) represents the pieceiwise basis function for the ith node in triangle T.  
+`basis_NP1_edges` - a matrix representing piece-wise basis functions for each edge in each triangle for the weighted fourier Nedelec and P1 space. basis(i,:,T) represents the pieceiwise basis function for the ith edge in triangle T.  
+`basis_RT_edges` - a matrix representing piece-wise basis functions for each edge in each triangle for the weighted fourier Raviart Thomas space. basis(i,:,T) represents the pieceiwise basis function for the ith edge in triangle T.  
+`basis_triangles` - a vector representing piece-wise basis functions for edge triangle. basis(1,T) represents the piecewise basis function for the Tth triangle.  
+`u_h` - approximated solution vector for u  
+`s_h` - approximated solution vector for s  
 
 ## Example
 ```

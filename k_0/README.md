@@ -4,14 +4,26 @@
 
 ## Usage
 
-
 ### Syntax
+
+#### Lowest Order Program:
+To compare a known exact solution u and to its approximated solution:
 ```
-[err] = weighted_HL_k_0_p1_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z
+[err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+```
+To find the approximated solution to an unknown solution:
+```
+[basis,u_h] = weighted_HL_k_0_p1(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n)
 ```
 
+#### First Order Program:
+To compare a known exact solution u and to its approximated solution:
 ```
-[err,grad_err,max_err] = weighted_HL_k_0_e(u,grad_u_r,grad_u_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+[err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z)
+```
+To find the approximated solution to an unknown solution:
+```
+[basis,u_h] = weighted_HL_k_0_p2(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n)
 ```
 
 ### Inputs
@@ -29,6 +41,8 @@
 `err` - array of L2 errors for mesh levels corresponding to indices  
 `grad_err` - array of L2 gradient errors for mesh levels corresponding to indices  
 `max_err` - array of max errors for mesh levels corresponding to indicies  
+`basis` - a matrix representing piece-wise basis functions for each node in each triangle. basis(i,:,k) represents the pieceiwise basis function for the ith node in triangle k.  
+`u_h` - approximated solution vector for u  
 
 ## Example
 ```
@@ -43,8 +57,9 @@ pdepoly([0,1,1,0], [0,0,1,1]);
 % define the equations
 [f,grad_f_r,grad_f_z,u,grad_u_r,grad_u_z] = get_data7();
 % run the program
-% use the first for P1 (first order) or the second for P2 (second order)
+% the lowest order
 [err] = weighted_HL_k_0_p1_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z);
+% or the first order
 [err,grad_err,max_err] = weighted_HL_k_0_p2_e(f,grad_f_r,grad_f_z,gd,sf,ns,mesh,n,u,grad_u_r,grad_u_z);
 ```
 
